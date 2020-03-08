@@ -5,13 +5,13 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-function _update_ps1() {
-		    PS1=$(powerline-shell $?)
-	}
+#function _update_ps1() {
+#		    PS1=$(powerline-shell $?)
+#	}
 
-if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-		    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-fi
+#if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+#		    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+#fi
 
 
 
@@ -48,5 +48,9 @@ eval "$(thefuck --alias)"
 
 
 set -o vi
+
+if [ -r ~/.bashrc_additions ]; then
+	source ~/.bashrc_additions
+fi
 
 neofetch
