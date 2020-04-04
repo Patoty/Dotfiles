@@ -3,7 +3,14 @@
 #
 
 # If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+# [[ $- != *i* ]] && return
+
+
+
+if [ -r ~/.bashrc_additions ]; then
+    source ~/.bashrc_additions
+fi
+
 
 #function _update_ps1() {
 #		    PS1=$(powerline-shell $?)
@@ -16,12 +23,12 @@
 
 
 
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-    tmux attach -t default || tmux new -s default
-fi
+#if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+#    tmux attach -t default || tmux new -s default
+#fi
 
 alias ls='ls --color=auto'
-PS1='[\u@\h \W]\$ '
+#PS1='[\u@\h \W]\$ '
 
 alias lsl='ls -l'
 alias lal='ls -al'
@@ -49,8 +56,5 @@ eval "$(thefuck --alias)"
 
 set -o vi
 
-if [ -r ~/.bashrc_additions ]; then
-	source ~/.bashrc_additions
-fi
 
-neofetch
+#neofetch
