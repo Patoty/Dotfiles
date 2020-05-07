@@ -23,11 +23,11 @@ fi
 
 
 
-#if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-#    tmux attach -t default || tmux new -s default
-#fi
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+    tmux attach -t default || tmux new -s default
+fi
 
-alias ls='ls --color=auto'
+#alias ls='ls --color=auto'
 #PS1='[\u@\h \W]\$ '
 
 alias lsl='ls -l'
