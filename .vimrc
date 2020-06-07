@@ -43,6 +43,8 @@ Plug 'morhetz/gruvbox'
 Plug 'Valloric/YouCompleteMe' "go to ~/.vim/plugged/YouCompleteMe and execute ./install.py 
 Plug 'mbblill/undotree'
 "Plug 'kien/ctrlp.vim'
+Plug 'lervag/vimtex'
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
 call plug#end()
 
