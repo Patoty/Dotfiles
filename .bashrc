@@ -30,28 +30,32 @@ fi
 alias ls='ls --color=auto'
 #PS1='[\u@\h \W]\$ '
 
-alias lsl='ls -l'
-alias lal='ls -al'
-alias la='ls -a'
-alias dir='lsl'
-alias dir='lsl'
+if [ -r ~/.config/Dotfiles/aliasrc ]; then
+	source ~/.config/Dotfiles/aliasrc
+fi
 
-alias please='sudo'
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-alias clearn='clear; neofetch'
-alias celar='clear'
-alias celarn='clear; neofetch'
-alias gits='git status'
-alias gitp='git push'
-alias gitpl='git pull'
-alias gitcom='git commit -a -m'
+#alias lsl='ls -l'
+#alias lal='ls -al'
+#alia la='ls -a'
+#alias dir='lsl'
+#alias dir='lsl'
 
-alias f='echo  patrick has paid their respects'
+#alias please='sudo'
+#alias ..='cd ..'
+#alias ...='cd ../..'
+#alias ....='cd ../../..'
+#alias .....='cd ../../../..'
+#alias clearn='clear; neofetch'
+#alias celar='clear'
+#alias celarn='clear; neofetch'
+#alias gits='git status'
+#alias gitp='git push'
+#alias gitpl='git pull'
+#alias gitcom='git commit -a -m'
 
-eval "$(thefuck --alias)"
+#alias f='echo  patrick has paid their respects'
+
+#eval "$(thefuck --alias)"
 
 
 set -o vi

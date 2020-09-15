@@ -48,6 +48,9 @@ Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
 call plug#end()
 
+let g:tex_flavor = 'latex'
+
+
 colorscheme gruvbox
 set background=dark
 

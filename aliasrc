@@ -1,0 +1,22 @@
+
+
+# Directory navigation aliases
+alias lsl="ls -l"
+alias lal="ls -al"
+alias la="ls -a"
+alias dir="ls -l"
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+# comfortability aliases
+alias please="sudo"
+alias clearn="clear && neofetch"
+alias celar="clear"
+alias celear="clear"
+alias celarn="clear && neofetch"
+
+eval $(thefuck --alias)
+
