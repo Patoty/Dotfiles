@@ -53,6 +53,6 @@ let g:tex_flavor = 'latex'
 
 colorscheme gruvbox
 set background=dark
-
+hi Normal guibg=NONE ctermbg=NONE
 
 
