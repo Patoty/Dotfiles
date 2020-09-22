@@ -41,18 +41,23 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'morhetz/gruvbox'
 Plug 'Valloric/YouCompleteMe' "go to ~/.vim/plugged/YouCompleteMe and execute ./install.py 
-Plug 'mbblill/undotree'
+"Plug 'mbblill/undotree'
 "Plug 'kien/ctrlp.vim'
 Plug 'lervag/vimtex'
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+Plug 'junegunn/goyo.vim'
 
 call plug#end()
 
 let g:tex_flavor = 'latex'
 
 
-colorscheme gruvbox
+"colorscheme gruvbox
 set background=dark
-hi Normal guibg=NONE ctermbg=NONE
 
+augroup my-colors
+	autocmd!
+	autocmd ColorScheme * hi Normal guibg=NONE ctermbg=NONE
+augroup end
 
+colorscheme gruvbox
