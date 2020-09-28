@@ -44,13 +44,16 @@ Plug 'Valloric/YouCompleteMe' "go to ~/.vim/plugged/YouCompleteMe and execute ./
 "Plug 'mbblill/undotree'
 "Plug 'kien/ctrlp.vim'
 Plug 'lervag/vimtex'
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+"Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+Plug 'ying17zi/vim-live-latex-preview', { 'for': 'tex' }
 Plug 'junegunn/goyo.vim'
 
 call plug#end()
 
 let g:tex_flavor = 'latex'
-
+"let g:livepreview_previewer = 'zathura'
+"let g:livepreview_use_biber = 1
+"let g:livepreview_engine = ' -shell-escape'
 
 "colorscheme gruvbox
 set background=dark
@@ -61,3 +64,6 @@ augroup my-colors
 augroup end
 
 colorscheme gruvbox
+
+" Keybindings:
+map E :Explore <Return>
