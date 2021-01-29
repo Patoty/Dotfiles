@@ -2,7 +2,6 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/patrickbokelmann/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -99,23 +98,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Directory navigation aliases
-alias lsl="ls -l"
-alias lal="ls -al"
-alias la="ls -a"
-alias dir="ls -l"
-
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-
-# comfortability aliases
-alias please="sudo"
-alias clearn="clear && neofetch"
-alias celar="clear"
-alias celear="clear"
-alias celarn="clear && neofetch"
-
-eval $(thefuck --alias)
+export ZSH="/Users/patrickbokelmann/.oh-my-zsh"
 
 # . /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
