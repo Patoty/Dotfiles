@@ -47,7 +47,9 @@ Plug 'lervag/vimtex'
 "Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'ying17zi/vim-live-latex-preview', { 'for': 'tex' }
 Plug 'junegunn/goyo.vim'
-
+Plug 'Townk/vim-autoclose'
+"Plug 'yegappan/taglist'
+Plug 'suoto/vim-hdl'
 call plug#end()
 
 let g:tex_flavor = 'latex'
