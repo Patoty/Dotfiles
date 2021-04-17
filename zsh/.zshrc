@@ -310,10 +310,13 @@ alias .....="cd ../../../.."
 # comfortability aliases
 alias please="sudo"
 alias clearn="clear && neofetch"
+alias cleara="clear && afetch"
 alias celar="clear"
 alias celear="clear"
 alias celarn="clear && neofetch"
+alias celara="clear && afetch"
 alias open="xdg-open"
+alias objdump="objdump -M intel"
 eval $(thefuck --alias)
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
@@ -321,3 +324,4 @@ export SDKMAN_DIR="/home/patrick/.sdkman"
 [[ -s "/home/patrick/.sdkman/bin/sdkman-init.sh" ]] && source "/home/patrick/.sdkman/bin/sdkman-init.sh"
 
 #. /etc/profile.d/fzf.zsh
+cleara

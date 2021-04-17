@@ -49,7 +49,7 @@ Plug 'ying17zi/vim-live-latex-preview', { 'for': 'tex' }
 Plug 'junegunn/goyo.vim'
 Plug 'Townk/vim-autoclose'
 "Plug 'yegappan/taglist'
-Plug 'suoto/vim-hdl'
+"Plug 'suoto/vim-hdl'
 call plug#end()
 
 let g:tex_flavor = 'latex'
@@ -64,7 +64,8 @@ augroup my-colors
 	autocmd ColorScheme * hi Normal guibg=NONE ctermbg=NONE
 augroup end
 
-colorscheme gruvbox
+"colorscheme gruvbox
+colorscheme delek 
 
 " File Explorer settings
 let g:netrw_banner = 0
