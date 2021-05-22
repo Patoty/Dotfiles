@@ -323,5 +323,5 @@ eval $(thefuck --alias)
 export SDKMAN_DIR="/home/patrick/.sdkman"
 [[ -s "/home/patrick/.sdkman/bin/sdkman-init.sh" ]] && source "/home/patrick/.sdkman/bin/sdkman-init.sh"
 
-#. /etc/profile.d/fzf.zsh
+. /etc/profile.d/fzf.zsh
 cleara
