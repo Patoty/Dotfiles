@@ -84,3 +84,4 @@ let g:netrw_liststyle = 3
 
 " Keybindings:
 map E :Explore <Return>
+inoremap jj <esc>
