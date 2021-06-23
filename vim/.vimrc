@@ -50,6 +50,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'Townk/vim-autoclose'
 "Plug 'yegappan/taglist'
 "Plug 'suoto/vim-hdl'
+Plug 'https://github.com/LaTeX-Box-Team/LaTeX-Box'
 call plug#end()
 
 let g:tex_flavor = 'latex'
