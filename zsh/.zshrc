@@ -325,3 +325,6 @@ export SDKMAN_DIR="/home/patrick/.sdkman"
 
 . /etc/profile.d/fzf.zsh
 cleara
+
+# opam configuration
+[[ ! -r /home/patrick/.opam/opam-init/init.zsh ]] || source /home/patrick/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null

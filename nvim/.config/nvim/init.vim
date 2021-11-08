@@ -1,6 +1,5 @@
 
-
-" set stuff
+"set stuff
 
 syntax on
 filetype plugin indent on
@@ -37,26 +36,58 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin('~/.vim/plugged')
+"call plug#begin('~/.vim/plugged')
 
-Plug 'morhetz/gruvbox'
-Plug 'Valloric/YouCompleteMe' "go to ~/.vim/plugged/YouCompleteMe and execute ./install.py 
+"Plug 'morhetz/gruvbox'
+"Plug 'Valloric/YouCompleteMe' "go to ~/.vim/plugged/YouCompleteMe and execute ./install.py 
 "Plug 'mbblill/undotree'
 "Plug 'kien/ctrlp.vim'
-Plug 'lervag/vimtex'
+""Plug 'lervag/vimtex'
 "Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-Plug 'ying17zi/vim-live-latex-preview', { 'for': 'tex' }
-Plug 'junegunn/goyo.vim'
-Plug 'Townk/vim-autoclose'
+""Plug 'ying17zi/vim-live-latex-preview', { 'for': 'tex' }
+""Plug 'junegunn/goyo.vim'
+""Plug 'Townk/vim-autoclose'
 "Plug 'yegappan/taglist'
 "Plug 'suoto/vim-hdl'
+""Plug 'preservim/nerdtree'
+
+"call plug#end()
+
+"# Plugin Manager: vim-plug
+"Installation sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+call plug#begin('~/.config/nvim/Plugins')
+
+"Navigation Plugins
 Plug 'preservim/nerdtree'
+Plug 'junegunn/goyo.vim'
+Plug 'Townk/vim-autoclose'
+
+"C development stuff
+Plug 'deoplete-plugins/deoplete-clang'
+
 
 " Ocaml stuff
 Plug 'scrooloose/syntastic'
 Plug 'def-lkb/merlin'
 call plug#end()
 
+"# Development settings
+"C dev
+let g:ale_linters = {
+    \ 'python': ['pylint'],
+    \ 'vim': ['vint'],
+    \ 'cpp': ['clang'],
+    \ 'c': ['clang']
+\}
+let g:neoformat_cpp_clangformat = {
+    \ 'exe': 'clang-format',
+    \ 'args': ['--style="{IndentWidth: 4}"']
+\}
+let g:neoformat_enabled_cpp = ['clangformat']
+let g:neoformat_enabled_c = ['clangformat']
+
+"LaTeX
 let g:tex_flavor = 'latex'
 "let g:livepreview_previewer = 'zathura'
 "let g:livepreview_use_biber = 1
