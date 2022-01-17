@@ -8,6 +8,7 @@ set shiftwidth=4
 "set expandtab " replaces tabs with spaces
 "set autoindent
 set smartindent
+set smarttab
 set relativenumber number
 set noerrorbells "no error sound effects
 set smartcase
@@ -63,13 +64,24 @@ Plug 'preservim/nerdtree'
 Plug 'junegunn/goyo.vim'
 Plug 'Townk/vim-autoclose'
 
+Plug 'tpope/vim-commentary'
+
+Plug 'neoclide/coc.nvim'
+Plug 'tc50cal/vim-terminal'
+
+Plug 'preservim/tagbar'
+
 "C development stuff
 Plug 'deoplete-plugins/deoplete-clang'
+
+"LaTeX
+Plug 'lervag/vimtex'
 
 
 " Ocaml stuff
 Plug 'scrooloose/syntastic'
 Plug 'def-lkb/merlin'
+
 call plug#end()
 
 "# Development settings
@@ -92,6 +104,10 @@ let g:tex_flavor = 'latex'
 "let g:livepreview_previewer = 'zathura'
 "let g:livepreview_use_biber = 1
 "let g:livepreview_engine = ' -shell-escape'
+
+"Ocaml config
+set rtp^="/home/patrick/.opam/4.13.1/share/ocp-indent/vim"
+
 
 set background=dark
 
@@ -127,6 +143,8 @@ nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
+tnoremap <Esc> <C-\><C-n>
+nmap <F8> :TagbarToggle<CR>
 
 
 " Keybindings:

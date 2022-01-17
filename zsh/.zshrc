@@ -317,6 +317,7 @@ alias celarn="clear && neofetch"
 alias celara="clear && afetch"
 alias open="xdg-open"
 alias objdump="objdump -M intel"
+alias vim="nvim"
 eval $(thefuck --alias)
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
