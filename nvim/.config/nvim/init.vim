@@ -118,6 +118,8 @@ augroup end
 
 "colorscheme gruvbox
 colorscheme delek 
+"Tagbar Settings
+"let g:tagbar_ctags_bin
 
 " File Explorer settings
 let g:netrw_banner = 0
