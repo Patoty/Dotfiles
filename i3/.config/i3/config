@@ -27,7 +27,8 @@ font pango:monospace 15
 #font pango:DejaVu Sans Mono 8
 
 # start a terminal. We use kitty.
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec kitty # i3-sensible-terminal
+bindsym Mod1+Return exec gnome-terminal 
 
 # kill focused window
 bindsym $mod+q kill
@@ -65,7 +66,7 @@ exec_always picom -f
 bindsym $mod+x exec betterlockscreen -l
 
 # Shutdown the computer
-#bindsym $mod+Shift+s exec shutdown now
+bindsym $mod+Shift+s exec systemctl suspend
 
 #Reboot Machine
 #bindsym $mod+r exec systemctl reboot
@@ -135,6 +136,15 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
+
+# 2A] move focused workspace 
+bindsym $mod+Control+Shift+h move workspace to output left
+bindsym $mod+Control+Shift+l move workspace to output right
+
+# 2A] move focused workspace with arrow keys
+bindsym $mod+Control+Shift+left move workspace to output left
+bindsym $mod+Control+Shift+right move workspace to output right
+
 
 # 3] split in horizontal orientation
 bindsym $mod+Shift+v split h
@@ -251,7 +261,7 @@ bindsym $mod+r mode "resize"
 # WS No. 5 has been used as example.
 # Note: You will have to launch the program from a program launcher (rofi).
 
-assign [class=rambox|discord] $ws1
+assign [class=Rambox|discord|Signal] $ws1
 assign [class=thunderbird] $ws2
 assign [class=brave|firefox] $ws3
 assign [class=spotify] $ws9
@@ -259,6 +269,7 @@ assign [class=spotify] $ws9
 for_window [class=Piper] floating enable 
 for_window [class=cairo-dock] floating enable 
 for_window [class=Plank] floating enable 
+for_window [title="gnome-terminal"] floating enable 
 
 for_window [class=Thunderbird] move to workspace 2
 
@@ -303,6 +314,7 @@ exec synology-drive
 exec flameshot
 exec indicator-sound-switcher 
 exec safeeyes
+exec caffeine
 #exec --no-startup-id indicator-sound-switcher 
 #exec onedrive_tray
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
