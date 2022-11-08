@@ -52,8 +52,11 @@ bindsym $mod+Shift+space exec --no-startup-id rofi -show run -theme Monokai
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Display Wallpaper, always.
-exec_always feh --bg-fill ~/Pictures/Wallpapers/tie_cockpit.jpg
-exec --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/tie_cockpit.jpg
+#exec_always feh --bg-fill ~/Pictures/Wallpapers/8152597.jpg
+#exec_always --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/8152597.jpg
+exec_always --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/mqFGWrU.jpg
+
+
 
 # Provide Gaps to Windows. Increase/Decrease as you like.
 gaps inner 10
@@ -264,11 +267,10 @@ bindsym $mod+r mode "resize"
 assign [class=Rambox|discord|Signal] $ws1
 assign [class=thunderbird] $ws2
 assign [class=brave|firefox] $ws3
-assign [class=spotify] $ws9
-
-for_window [class=Piper] floating enable 
-for_window [class=cairo-dock] floating enable 
+assign [class=spotify] $ws9 
+for_window [class=Piper] floating enable for_window [class=cairo-dock] floating enable 
 for_window [class=Plank] floating enable 
+for_window [class=Bitwarden] floating enable 
 for_window [title="gnome-terminal"] floating enable 
 
 for_window [class=Thunderbird] move to workspace 2
@@ -281,6 +283,7 @@ bindsym $mod+Mod1+b workspace 3; exec brave; focus
 bindsym $mod+Mod1+s workspace 9; exec spotify; focus
 bindsym $mod+Mod1+n workspace 5; exec nautilus; focus
 bindsym $mod+Mod1+x exec flameshot gui
+bindsym $mod+b exec bitwarden-desktop; focus
 
 
 #Multi Monitor (Dual Monitor, extended monitor)
@@ -290,8 +293,9 @@ bindsym $mod+Mod1+x exec flameshot gui
 #HDMI-X is display used in Desktop connected to monitor with HDMI Cable.
 #VGA-X is display used in Desktop connected to monitor with VGA Cable.
 #exec --no-startup-id xrandr --output HDMI-2 --right-of HDMI-1 --auto
-exec --no-startup-id xrandr --output DVI-D-1 --right-of HDMI-1
-exec --no-startup-id xrandr --output DP-1 --off
+exec_always --no-startup-id xrandr --output DP-2 --mode 2560x1080 --primary --left-of LVDS-1
+bindsym $mod+Shift+m exec --no-startup-id xrandr --output LVDS-1 --off 
+bindsym $mod+m exec --no-startup-id xrandr --output LVDS-1 --mode 1366x768 --primary
 
 # set up workspaces on monitors
 #bindsym $mod+Mod1+r move workspace to output HDMI-1; move workspace number $ws2 to output DVI-D-1 
@@ -303,7 +307,8 @@ exec --no-startup-id xrandr --output DP-1 --off
 default_border pixel 3
 
 # keyboard tweaks
-exec setxkbmap -layout de -option caps:escape
+exec_always --no-startup-id setxkbmap -layout de -option caps:escape
+bindsym $mod+Esc exec --no-startup-id setxkbmap -layout de -option caps:escape
 
 # application bindings
 

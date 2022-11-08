@@ -27,7 +27,6 @@ set mouse=a
 " set laststatus=2
 " set t_Co=256
 
-" colorscheme slate
 
 " Plugins
 
@@ -74,13 +73,16 @@ Plug 'preservim/tagbar'
 "C development stuff
 Plug 'deoplete-plugins/deoplete-clang'
 
-"LaTeX
+"LaTeX / Markdown
 Plug 'lervag/vimtex'
-
+Plug 'ixru/nvim-markdown'
 
 " Ocaml stuff
 Plug 'scrooloose/syntastic'
 Plug 'def-lkb/merlin'
+
+" Style plugins
+Plug 'wuelnerdotexe/vim-enfocado'
 
 call plug#end()
 
@@ -109,15 +111,30 @@ let g:tex_flavor = 'latex'
 set rtp^="/home/patrick/.opam/4.13.1/share/ocp-indent/vim"
 
 
-set background=dark
+"" Theming options
 
-augroup my-colors
-	autocmd!
-	autocmd ColorScheme * hi Normal guibg=NONE ctermbg=NONE
-augroup end
+"augroup my-colors
+"	autocmd!
+"	autocmd ColorScheme * hi Normal guibg=NONE ctermbg=NONE
+"augroup end
 
 "colorscheme gruvbox
-colorscheme delek 
+"colorscheme delek 
+"colorscheme slate
+
+" Make enfocado theme transparent
+set background=dark
+augroup enfocado_customization
+  autocmd!
+    autocmd ColorScheme enfocado ++nested highlight Normal ctermbg=NONE guibg=NONE
+augroup END
+
+set termguicolors
+let g:enfocado_style = 'nature' " Available: `nature` or `neon`.
+colorscheme enfocado
+
+
+
 "Tagbar Settings
 "let g:tagbar_ctags_bin
 
@@ -154,3 +171,9 @@ map E :Explore <Return>
 inoremap jj <esc>
 
 set rtp^="/home/patrick/.opam/4.13.1/share/ocp-indent/vim"
+
+" Autocomplete keybindings
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+
