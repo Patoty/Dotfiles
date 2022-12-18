@@ -41,7 +41,7 @@ bindsym $mod+q kill
 # This is the recommended mode. It searches for the programs as
 # defined in .desktop file, with their description, and corresponding
 # icons
-bindsym $mod+space exec --no-startup-id rofi -show drun -theme Monokai -icon-theme "Tela-circle" -show-icons
+bindsym $mod+space exec --no-startup-id rofi -combi-modi drun#window#ssh#combi -show combi -theme Paper -icon-theme "Tela-circle" -show-icons
 
 # The other mode search for applications in /usr/bin or /usr/sbin.
 # This should only be used if a program lacks a .desktop file.
@@ -54,7 +54,8 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # Display Wallpaper, always.
 #exec_always feh --bg-fill ~/Pictures/Wallpapers/8152597.jpg
 #exec_always --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/8152597.jpg
-exec_always --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/mqFGWrU.jpg
+#exec_always --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/mqFGWrU.jpg
+exec_always --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/599222.jpg
 
 
 
@@ -264,11 +265,12 @@ bindsym $mod+r mode "resize"
 # WS No. 5 has been used as example.
 # Note: You will have to launch the program from a program launcher (rofi).
 
-assign [class=Rambox|discord|Signal] $ws1
+assign [class=Rambox|discord|Signal|Whatsapp-for-linux|Zulip] $ws1
 assign [class=thunderbird] $ws2
 assign [class=brave|firefox] $ws3
 assign [class=spotify] $ws9 
-for_window [class=Piper] floating enable for_window [class=cairo-dock] floating enable 
+for_window [class=Piper] floating enable 
+for_window [class=Pavucontrol|Signal|Whatsapp-for-linux|calculator] floating enable 
 for_window [class=Plank] floating enable 
 for_window [class=Bitwarden] floating enable 
 for_window [title="gnome-terminal"] floating enable 
