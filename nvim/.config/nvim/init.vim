@@ -14,6 +14,12 @@ set noerrorbells "no error sound effects
 set smartcase
 set incsearch
 
+"Set indent
+set linebreak
+set showbreak=>>
+set breakindent
+set breakindentopt=shift:2
+
 "set noswapfile
 "set nobackup
 "set undodir=~/.vim/undodir " Directory needs to be manually created
@@ -70,6 +76,10 @@ Plug 'tc50cal/vim-terminal'
 
 Plug 'preservim/tagbar'
 
+"TO-DO overview
+Plug 'nvim-lua/plenary.nvim'
+Plug 'folke/todo-comments.nvim'
+
 "C development stuff
 Plug 'deoplete-plugins/deoplete-clang'
 
@@ -103,9 +113,9 @@ let g:neoformat_enabled_c = ['clangformat']
 
 "LaTeX
 let g:tex_flavor = 'latex'
-"let g:livepreview_previewer = 'zathura'
-"let g:livepreview_use_biber = 1
-"let g:livepreview_engine = ' -shell-escape'
+let g:livepreview_previewer = 'zathura'
+let g:livepreview_use_biber = 1
+let g:livepreview_engine = ' -shell-escape'
 
 "Ocaml config
 set rtp^="/home/patrick/.opam/4.13.1/share/ocp-indent/vim"
@@ -133,7 +143,11 @@ set termguicolors
 let g:enfocado_style = 'nature' " Available: `nature` or `neon`.
 colorscheme enfocado
 
-
+"TO-Do config
+lua << EOF
+  require("todo-comments").setup {
+  }
+EOF
 
 "Tagbar Settings
 "let g:tagbar_ctags_bin

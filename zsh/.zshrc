@@ -321,8 +321,13 @@ alias vim="nvim"
 eval $(thefuck --alias)
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/patrick/.sdkman"
-[[ -s "/home/patrick/.sdkman/bin/sdkman-init.sh" ]] && source "/home/patrick/.sdkman/bin/sdkman-init.sh"
+#export SDKMAN_DIR="/home/patrick/.sdkman"
+#[[ -s "/home/patrick/.sdkman/bin/sdkman-init.sh" ]] && source "/home/patrick/.sdkman/bin/sdkman-init.sh"
+
+# Set default editor
+export EDITOR=nvim
+export VISUAL=nvim
+
 
 . /etc/profile.d/fzf.zsh
 cleara
