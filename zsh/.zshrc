@@ -294,7 +294,7 @@ zstyle '*' single-ignored show
 
 ### Source plugins
 ##################
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
 alias lsl="ls -l"
@@ -329,8 +329,7 @@ export EDITOR=nvim
 export VISUAL=nvim
 
 
-. /etc/profile.d/fzf.zsh
-cleara
+#. /etc/profile.d/fzf.zsh
 
 # opam configuration
 [[ ! -r /home/patrick/.opam/opam-init/init.zsh ]] || source /home/patrick/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
