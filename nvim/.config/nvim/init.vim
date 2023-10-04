@@ -75,6 +75,8 @@ Plug 'neoclide/coc.nvim'
 Plug 'tc50cal/vim-terminal'
 
 Plug 'preservim/tagbar'
+" Debuggers
+Plug 'puremourning/vimspector'
 
 "TO-DO overview
 Plug 'nvim-lua/plenary.nvim'
@@ -179,10 +181,19 @@ nnoremap <C-f> :NERDTreeFind<CR>
 tnoremap <Esc> <C-\><C-n>
 nmap <F8> :TagbarToggle<CR>
 
+" Vimspector Debugger settings
+" mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
+
+"for normal mode - the word under the cursor
+nmap <Leader>di <Plug>VimspectorBalloonEval
+" for visual mode, the visually selected text
+xmap <Leader>di <Plug>VimspectorBalloonEval
+
 
 " Keybindings:
 map E :Explore <Return>
 inoremap jj <esc>
+map swh :CocCommand clangd.switchSourceHeader <Return>
 
 set rtp^="/home/patrick/.opam/4.13.1/share/ocp-indent/vim"
 
