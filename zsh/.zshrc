@@ -330,8 +330,8 @@ export VISUAL=nvim
 
 
 #. /etc/profile.d/fzf.zsh
-source /opt/local/share/fzf/shell/key-bindings.zsh
-source /opt/local/share/fzf/shell/completion.zsh
+#source /opt/local/share/fzf/shell/key-bindings.zsh
+#source /opt/local/share/fzf/shell/completion.zsh
 
 # opam configuration
 [[ ! -r /home/patrick/.opam/opam-init/init.zsh ]] || source /home/patrick/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
