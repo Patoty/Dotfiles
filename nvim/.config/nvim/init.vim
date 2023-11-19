@@ -75,6 +75,7 @@ Plug 'neoclide/coc.nvim'
 Plug 'tc50cal/vim-terminal'
 
 Plug 'preservim/tagbar'
+Plug 'voldikss/vim-floaterm'
 " Debuggers
 Plug 'puremourning/vimspector'
 
@@ -121,6 +122,11 @@ let g:livepreview_engine = ' -shell-escape'
 
 "Ocaml config
 set rtp^="/home/patrick/.opam/4.13.1/share/ocp-indent/vim"
+
+
+"" COC Config
+"---------------------------------------------------------------------
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-clangd', 'coc-cmake', 'coc-copilot', 'coc-flutter', 'coc-jedi', 'coc-ltex', 'coc-sh', 'coc-rust-analyzer', 'coc-texlab'] 
 
 
 "" Theming options
@@ -194,6 +200,12 @@ xmap <Leader>di <Plug>VimspectorBalloonEval
 map E :Explore <Return>
 inoremap jj <esc>
 map swh :CocCommand clangd.switchSourceHeader <Return>
+
+"Floatterm binds
+map T :FloatermToggle <Return>
+map tn :FloatermNew <Return>
+map tgg :FloatermNext <Return>
+map tgT :FloatermPrev <Return>
 
 set rtp^="/home/patrick/.opam/4.13.1/share/ocp-indent/vim"
 
