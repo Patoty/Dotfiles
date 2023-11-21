@@ -115,9 +115,28 @@ let g:neoformat_enabled_c = ['clangformat']
 
 "LaTeX
 let g:tex_flavor = 'latex'
+let g:vimtex_compiler_progname = 'nvr'
 let g:livepreview_previewer = 'zathura'
 let g:livepreview_use_biber = 1
-let g:livepreview_engine = ' -shell-escape'
+let g:livepreview_engine = '-shell-escape'
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_view_general_viewer = 'zathura'
+let g:vimtex_compiler_method = 'latexmk'
+
+let g:vimtex_compiler_latexmk = {
+    \ 'build_dir' : '',
+    \ 'callback' : 1,
+    \ 'continuous' : 1,
+    \ 'executable' : 'latexmk',
+    \ 'hooks' : [],
+    \ 'options' : [
+	\	'-shell-escape',
+    \   '-verbose',
+    \   '-file-line-error',
+    \   '-synctex=1',
+    \   '-interaction=nonstopmode',
+    \ ],
+    \}
 
 "Ocaml config
 set rtp^="/home/patrick/.opam/4.13.1/share/ocp-indent/vim"
