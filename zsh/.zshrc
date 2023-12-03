@@ -334,7 +334,7 @@ export VISUAL=/bin/nvim
 #source /opt/local/share/fzf/shell/completion.zsh
 
 # opam configuration
-[[ ! -r /home/patrick/.opam/opam-init/init.zsh ]] || source /home/patrick/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+#[[ ! -r /home/patrick/.opam/opam-init/init.zsh ]] || source /home/patrick/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/usr/local/opt/llvm/bin:$PATH"
@@ -342,7 +342,6 @@ export LDFLAGS="-L/usr/local/opt/llvm/lib"
 CPPFLAGS="-I/usr/local/opt/llvm/include"
 
 # >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/patrick/Code/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
@@ -356,3 +355,16 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+#__conda_setup="$('/Users/patrick/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+#if [ $? -eq 0 ]; then
+#    eval "$__conda_setup"
+#else
+#    if [ -f "/Users/patrick/anaconda3/etc/profile.d/conda.sh" ]; then
+#        . "/Users/patrick/anaconda3/etc/profile.d/conda.sh"
+#    else
+#        export PATH="/Users/patrick/anaconda3/bin:$PATH"
+#    fi
+#fi
+#unset __conda_setup
+## <<< conda initialize <<<
+#export PATH=”$HOME/.emacs.d/bin:$PATH”

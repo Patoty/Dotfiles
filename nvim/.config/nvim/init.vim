@@ -51,23 +51,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-"call plug#begin('~/.vim/plugged')
-
-"Plug 'morhetz/gruvbox'
-"Plug 'Valloric/YouCompleteMe' "go to ~/.vim/plugged/YouCompleteMe and execute ./install.py 
-"Plug 'mbblill/undotree'
-"Plug 'kien/ctrlp.vim'
-""Plug 'lervag/vimtex'
-"Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-""Plug 'ying17zi/vim-live-latex-preview', { 'for': 'tex' }
-""Plug 'junegunn/goyo.vim'
-""Plug 'Townk/vim-autoclose'
-"Plug 'yegappan/taglist'
-"Plug 'suoto/vim-hdl'
-""Plug 'preservim/nerdtree'
-
-"call plug#end()
-
 "# Plugin Manager: vim-plug
 "Installation sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
@@ -128,11 +111,17 @@ let g:neoformat_enabled_c = ['clangformat']
 
 "LaTeX
 let g:tex_flavor = 'latex'
+let g:vimtex_compiler_progname = 'nvr'
 let g:livepreview_previewer = 'zathura'
 let g:livepreview_use_biber = 1
-let g:livepreview_engine = ' -shell-escape'
 "let g:vimtex_latexmk_options = '-pdf -shell-escape -file-line-error -synctex=1 -interaction=nonstopmode'
+let g:livepreview_engine = '-shell-escape'
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_view_general_viewer = 'zathura'
+let g:vimtex_compiler_method = 'latexmk'
+
 let g:vimtex_compiler_latexmk = {
+    \ 'build_dir' : '',
     \ 'aux_dir' : '',
     \ 'out_dir' : '',
     \ 'callback' : 1,
@@ -141,7 +130,7 @@ let g:vimtex_compiler_latexmk = {
     \ 'hooks' : [],
     \ 'options' : [
     \   '-verbose',
-    \   '-shell-escape',
+	\	'-shell-escape',
     \   '-file-line-error',
     \   '-synctex=1',
     \   '-interaction=nonstopmode',
