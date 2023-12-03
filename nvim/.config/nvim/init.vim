@@ -13,6 +13,15 @@ set relativenumber number
 set noerrorbells "no error sound effects
 set smartcase
 set incsearch
+set splitbelow splitright 
+"set background=dark
+"set clipboard=unamedplus
+set cursorline
+set title
+set wildmenu "shows a more advanced menu for auto-completion suggestions.
+"set completeopt "modifies the auto-complete menu to behave more like an IDE
+
+
 
 "Set indent
 set linebreak
@@ -71,7 +80,7 @@ Plug 'Townk/vim-autoclose'
 
 Plug 'tpope/vim-commentary'
 
-Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install'}
 Plug 'tc50cal/vim-terminal'
 
 Plug 'preservim/tagbar'
@@ -96,6 +105,9 @@ Plug 'def-lkb/merlin'
 
 " Style plugins
 Plug 'wuelnerdotexe/vim-enfocado'
+Plug 'vim-airline/vim-airline'
+Plug 'ryanoasis/vim-devicons'
+Plug 'ap/vim-css-color'
 
 call plug#end()
 
@@ -119,6 +131,22 @@ let g:tex_flavor = 'latex'
 let g:livepreview_previewer = 'zathura'
 let g:livepreview_use_biber = 1
 let g:livepreview_engine = ' -shell-escape'
+"let g:vimtex_latexmk_options = '-pdf -shell-escape -file-line-error -synctex=1 -interaction=nonstopmode'
+let g:vimtex_compiler_latexmk = {
+    \ 'aux_dir' : '',
+    \ 'out_dir' : '',
+    \ 'callback' : 1,
+    \ 'continuous' : 1,
+    \ 'executable' : 'latexmk',
+    \ 'hooks' : [],
+    \ 'options' : [
+    \   '-verbose',
+    \   '-shell-escape',
+    \   '-file-line-error',
+    \   '-synctex=1',
+    \   '-interaction=nonstopmode',
+    \ ],
+    \}
 
 "Ocaml config
 set rtp^="/home/patrick/.opam/4.13.1/share/ocp-indent/vim"
@@ -126,7 +154,7 @@ set rtp^="/home/patrick/.opam/4.13.1/share/ocp-indent/vim"
 
 "" COC Config
 "---------------------------------------------------------------------
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-clangd', 'coc-cmake', 'coc-copilot', 'coc-flutter', 'coc-jedi', 'coc-ltex', 'coc-sh', 'coc-rust-analyzer', 'coc-texlab'] 
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-clangd', 'coc-cmake', 'coc-copilot', 'coc-flutter', 'coc-python', 'coc-ltex', 'coc-sh', 'coc-rust-analyzer', 'coc-texlab'] 
 
 
 "" Theming options
@@ -150,6 +178,12 @@ augroup END
 set termguicolors
 let g:enfocado_style = 'nature' " Available: `nature` or `neon`.
 colorscheme enfocado
+
+" Airline config
+"let g:airline_theme='sobrio'
+"let g:airline_powerline_fonts = 1
+"let g:airline#extensions#tabline#enabled = 1
+
 
 "TO-Do config
 lua << EOF
@@ -207,7 +241,7 @@ map tn :FloatermNew <Return>
 map tgg :FloatermNext <Return>
 map tgT :FloatermPrev <Return>
 
-set rtp^="/home/patrick/.opam/4.13.1/share/ocp-indent/vim"
+set rtp^="/home/patrick/.opam/5.1.0/share/ocp-indent/vim"
 
 " Autocomplete keybindings
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Down>"
