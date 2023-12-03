@@ -318,15 +318,15 @@ alias celara="clear && afetch"
 alias open="xdg-open"
 alias objdump="objdump -M intel"
 alias vim="nvim"
-eval $(thefuck --alias)
+#eval $(thefuck --alias)
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 #export SDKMAN_DIR="/home/patrick/.sdkman"
 #[[ -s "/home/patrick/.sdkman/bin/sdkman-init.sh" ]] && source "/home/patrick/.sdkman/bin/sdkman-init.sh"
 
 # Set default editor
-export EDITOR=nvim
-export VISUAL=nvim
+export EDITOR=/bin/nvim
+export VISUAL=/bin/nvim
 
 
 #. /etc/profile.d/fzf.zsh
@@ -343,14 +343,14 @@ CPPFLAGS="-I/usr/local/opt/llvm/include"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/patrick/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/patrick/Code/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/patrick/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/patrick/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/patrick/Code/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/patrick/Code/anaconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/patrick/anaconda3/bin:$PATH"
+        export PATH="/home/patrick/Code/anaconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
