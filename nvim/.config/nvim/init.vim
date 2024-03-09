@@ -15,7 +15,7 @@ set smartcase
 set incsearch
 set splitbelow splitright 
 "set background=dark
-"set clipboard=unamedplus
+"set clipboard=unamedplus  " enable system-wide clipboard, same as "+yy
 set cursorline
 set title
 set wildmenu "shows a more advanced menu for auto-completion suggestions.
@@ -62,6 +62,9 @@ Plug 'junegunn/goyo.vim'
 Plug 'Townk/vim-autoclose'
 
 Plug 'tpope/vim-commentary'
+
+" git plugins
+Plug 'tpope/vim-fugitive'
 
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install'}
 Plug 'tc50cal/vim-terminal'
