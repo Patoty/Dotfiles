@@ -325,8 +325,8 @@ alias vim="nvim"
 #[[ -s "/home/patrick/.sdkman/bin/sdkman-init.sh" ]] && source "/home/patrick/.sdkman/bin/sdkman-init.sh"
 
 # Set default editor
-export EDITOR=/bin/nvim
-export VISUAL=/bin/nvim
+export EDITOR="/bin/nvim"
+export VISUAL="/bin/nvim"
 
 
 #. /etc/profile.d/fzf.zsh
