@@ -1,0 +1,5 @@
+
+
+#ignore all plugins
+__pycache__/
+plugins/
