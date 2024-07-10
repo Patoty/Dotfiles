@@ -5,11 +5,14 @@
     // "width": 1280, // Waybar width
     "spacing": 0, // Gaps between modules (4px)
     // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces", "hyprland/mode", "hyprland/scratchpad", "custom/media"],
-    "modules-center": ["hyprland/window"],
+    //"modules-left": ["hyprland/workspaces", "hyprland/mode", "hyprland/scratchpad", "custom/media"],
+    "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad", "custom/media"],
+    //"modules-center": ["hyprland/window"],
+    "modules-center": ["sway/window"],
     "modules-right": ["tray", "mpd", "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "keyboard-state", "hyprland/language", "battery", "battery#bat2", "power-profiles-daemon", "clock"],
     // Modules configuration
-    "hyprland/workspaces": {
+    //"hyprland/workspaces": {
+    "sway/workspaces": {
         "disable-scroll": false,
         "all-outputs": true,
         "warp-on-scroll": false,
@@ -34,10 +37,12 @@
             "unlocked": ""
         }
     },
-    "hyprland/mode": {
+    //"hyprland/mode": {
+    "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
-    "hyprland/scratchpad": {
+    //"hyprland/scratchpad": {
+    "sway/scratchpad": {
         "format": "{icon} {count}",
         "show-empty": false,
         "format-icons": ["", ""],
