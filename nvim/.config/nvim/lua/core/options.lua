@@ -26,15 +26,17 @@ vim.opt.splitright = true -- force all vertical splits to go to the right of cur
 vim.opt.updatetime = 100 -- faster completion (default is 4000 ns)
 vim.opt.signcolumn = "yes" -- always show the sign column, otherwise it would shift the text each time
 
-vim.opt.errorbells = false 
-vim.opt.wildmenu = true 
+vim.opt.errorbells = false
+vim.opt.wildmenu = true
 
 --text wrapping
 --vim.opt.wrap = false -- display lines as one long line
-vim.opt.linebreak = true 
-vim.opt.showbreak = '  >> '  
+vim.opt.linebreak = true
+vim.opt.showbreak = '  >> '
 vim.opt.breakindent = true
 vim.opt.breakindentopt = { 'shift:2', 'sbr' }
 
+--vim.opt.foldmethod = 'indent'
+--vim.opt.foldlevel = 99
 
 

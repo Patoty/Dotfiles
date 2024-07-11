@@ -18,7 +18,6 @@ return require('packer').startup(function(use)
 	-- use 'foo2/bar2.nvim'
 
 -- Visual Tweaks
-	use 'ellisonleao/gruvbox.nvim'
 	use 'nvim-tree/nvim-web-devicons'
 	use 'nvim-lualine/lualine.nvim'
 	use 'bluz71/vim-nightfly-colors'
@@ -30,6 +29,9 @@ return require('packer').startup(function(use)
 			requires = "neovim/nvim-lspconfig"
 		}
 		use 'LunarVim/breadcrumbs.nvim'
+	--themes
+		use 'ellisonleao/gruvbox.nvim'
+		use 'folke/tokyonight.nvim'
 
 -- navigation plugins
 	use 'nvim-tree/nvim-tree.lua' --TODO: change to luatree?
@@ -47,7 +49,8 @@ return require('packer').startup(function(use)
 			"MunifTanjim/nui.nvim",
 			-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
 		}
-	} 
+	}
+	use 'preservim/tagbar'
 
 -- LSPs
 	use {

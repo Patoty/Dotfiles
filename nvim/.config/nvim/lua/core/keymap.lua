@@ -13,3 +13,5 @@ map('v', '>', '>gv')
 -- move line on screen instead of by file line
 map('n', 'j', 'gj', {noremap = true, silent = true})
 map('n', 'k', 'gk', {noremap = true, silent = true})
+
+map('n', '<leader>tt', ':TagbarToggle<CR>', {})
