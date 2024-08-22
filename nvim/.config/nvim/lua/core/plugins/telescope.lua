@@ -2,6 +2,11 @@
 require('telescope').setup {
 	defaults = {
 	},
+	extensions = {
+		thesaurus = {
+			provider = 'datamuse',
+		},
+	},
 }
 
 local builtin = require('telescope.builtin')

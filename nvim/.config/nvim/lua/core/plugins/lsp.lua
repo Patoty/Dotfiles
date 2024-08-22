@@ -13,6 +13,10 @@ local on_attach = function(_,_)
 	vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, {})
 	vim.keymap.set('n', '<leader>gr', require('telescope.builtin').lsp_references, {})
 	vim.keymap.set('n', '<leader>K', vim.lsp.buf.hover, {})
+
+	vim.keymap.set('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap=true, silent=true })
+
+
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -35,6 +39,19 @@ require("lspconfig").clangd.setup {
 require("lspconfig").texlab.setup {
 	on_attach = on_attach,
 	capabilities = capabilities,
+	cmd = {"texlab"},
+	filetypes = {"tex", "bib"},
+	settings =  {
+		texlab = {
+			rootDirectory = nil,
+			build = _G.TexMagicBuildConfig,
+
+			forwardSearch = {
+				executable = "evince",
+				args = {"%p"},
+			},
+		},
+	},
 }
 
 require("lspconfig").cmake.setup {

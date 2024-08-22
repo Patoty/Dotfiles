@@ -43,7 +43,7 @@ return require('packer').startup(function(use)
 	}
 	use {"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
-		requires = { 
+		requires = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 			"MunifTanjim/nui.nvim",
@@ -65,12 +65,14 @@ return require('packer').startup(function(use)
 	use 'L3MON4D3/LuaSnip'
 	use 'saadparwaiz1/cmp_luasnip'
 	use 'rafamadriz/friendly-snippets'
+	use 'm4xshen/autoclose.nvim'
 
 -- Testing/debugging
 	use 'vim-test/vim-test'
 	use 'nvim-neotest/nvim-nio'
 	use 'mfussenegger/nvim-dap'
 	use 'rcarriga/nvim-dap-ui'
+	use 'folke/trouble.nvim'
 
 -- Git
 	use 'lewis6991/gitsigns.nvim'
@@ -82,6 +84,15 @@ return require('packer').startup(function(use)
 -- Session management
 	use 'rmagatti/auto-session'
 
+-- LaTeX
+	use 'lervag/vimtex'
+	--use 'jakewvincent/texmagic.nvim'
+
+-- Natural Language stuff
+	use {
+  		'rafi/telescope-thesaurus.nvim',
+		requires = { 'nvim-telescope/telescope.nvim' }
+	}
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if packer_bootstrap then

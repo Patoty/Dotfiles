@@ -37,6 +37,15 @@ vim.opt.breakindent = true
 vim.opt.breakindentopt = { 'shift:2', 'sbr' }
 
 --vim.opt.foldmethod = 'indent'
---vim.opt.foldlevel = 99
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldcolumn = "0"
+--vim.opt.foldtext = ""
+
+vim.opt.foldlevel = 99 --minimum level of a fold that will be closed by default
+vim.opt.foldlevelstart = 15 --any fold beyond 1 is closed by default
+vim.opt.foldenable = false
 
 
+vim.opt.hlsearch = false
+vim.opt.incsearch = true

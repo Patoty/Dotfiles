@@ -12,4 +12,7 @@ require("core.plugins.sessions")
 require("core.plugins.terminal")
 require("core.plugins.topbar")
 require("core.plugins.neotree")
+require("core.plugins.trouble")
+require("core.plugins.latex")
+require("core.plugins.language")
 
