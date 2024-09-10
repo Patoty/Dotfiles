@@ -12,18 +12,20 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term konsole 
+set $term alacritty 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
 #set $menu "rofi -combi-modi window,drun,ssh,run -show combi -show-icons"
-set $menu "rofi -show drun"
+#set $menu "rofi -show drun"
+set $menu "wofi --show drun"
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/Wallpapers/landscape-car3.jpg fill
+#output * bg ~/Pictures/Wallpapers/landscape-car3.jpg fill
+output * bg ~/Pictures/Wallpapers/GBS/space-sloth-1.jpg fill
 #
 # Example configuration:
 #
@@ -34,13 +36,17 @@ output 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' resolution 2560x1440@60Hz pos
 output 'AOC 2460G5 0x0000FA96' resolution 1920x1080 position 0,0 transform 270
 output eDP-1 scale 1.25
 
+output 'Dell Inc. DELL U2713H C6F0K534090L' resolution 2560x1440@60Hz position 1920,0 scale 1.25
+output 'Iiyama North America PLB2712HDS 1105104300939' resolution 1920x1080 position 0,100 
+exec kanshi
+
 set $laptopdisp eDP-1 
 bindswitch --reload --locked lid:on output $laptopdisp disable
 bindswitch --reload --locked lid:off output $laptopdisp enable
 # laptop lid script:
 exec_always ~/bin/clamshell_mode.sh
 workspace 10 output eDP-1
-workspace 8 output 'AOC 2460G5 0x0000FA96'
+workspace 11 output 'AOC 2460G5 0x0000FA96'
 
 ## Brightness configuration
 #bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
@@ -60,10 +66,11 @@ bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 # Example configuration:
 #
 exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
+         timeout 300 'swaylock -f -c 000000 -i ~/Pictures/Wallpapers/GBS/space-sloth-1.jpg' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000'
+         before-sleep 'swaylock -f -c 000000 -i ~/Pictures/Wallpapers/GBS/space-sloth-1.jpg'
 
+bindsym $mod+Delete exec swaylock -f -c 000000 -i ~/Pictures/Wallpapers/GBS/space-sloth-1.jpg
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
@@ -73,23 +80,27 @@ exec swayidle -w \
 # Example configuration:
 #
 input type:pointer {
-	natural_scroll enabled 
-	
+	#natural_scroll enabled 
+	left_handed disabled
 }
 
 input "2:7:SynPS/2_Synaptics_TouchPad" {
     dwt enabled
     tap enabled
+	tap_button_map lrm
     natural_scroll enabled
-		middle_emulation enabled
+	middle_emulation enabled
 	pointer_accel 0.3
 	accel_profile adaptive
+	drag enabled
+	click_method clickfinger
 }
 
 input "2:10:TPPS/2_Elan_TrackPoint" {
 	pointer_accel 0.05
 	accel_profile adaptive
 	natural_scroll disabled 
+	left_handed disabled
 }
 
 input type:keyboard {
@@ -98,7 +109,13 @@ input type:keyboard {
 }
 
 input 1133:50504:Logitech_USB_Receiver_Mouse {
-	natural_scroll enabled 
+	natural_scroll disabled 
+	left_handed disabled
+}
+
+input "1133:16517:Logitech_G604" {
+	natural_scroll disabled 
+	left_handed disabled
 }
 
 
@@ -119,7 +136,7 @@ input 1133:50504:Logitech_USB_Receiver_Mouse {
 #
     # Start a terminal
     bindsym $mod+Return exec $term
-	bindsym $mod+Shift+Return exec $term ranger
+	bindsym $mod+Shift+Return exec $term -e ranger
 
     # Kill focused window
     bindsym $mod+q kill
@@ -177,6 +194,15 @@ input 1133:50504:Logitech_USB_Receiver_Mouse {
     bindsym $mod+8 workspace number 8
     bindsym $mod+9 workspace number 9
     bindsym $mod+0 workspace number 10
+    bindsym $mod+F1 workspace number 11
+    bindsym $mod+F2 workspace number 12
+    bindsym $mod+F3 workspace number 13
+    bindsym $mod+F4 workspace number 14
+    bindsym $mod+F5 workspace number 15
+    bindsym $mod+F6 workspace number 16
+    bindsym $mod+F7 workspace number 17
+    bindsym $mod+F8 workspace number 18
+    bindsym $mod+F9 workspace number 19
     # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace number 1
     bindsym $mod+Shift+2 move container to workspace number 2
@@ -188,6 +214,15 @@ input 1133:50504:Logitech_USB_Receiver_Mouse {
     bindsym $mod+Shift+8 move container to workspace number 8
     bindsym $mod+Shift+9 move container to workspace number 9
     bindsym $mod+Shift+0 move container to workspace number 10
+    bindsym $mod+Shift+F1 move container to workspace number 11
+    bindsym $mod+Shift+F2 move container to workspace number 12
+    bindsym $mod+Shift+F3 move container to workspace number 13
+    bindsym $mod+Shift+F4 move container to workspace number 14
+    bindsym $mod+Shift+F5 move container to workspace number 15
+    bindsym $mod+Shift+F6 move container to workspace number 16
+    bindsym $mod+Shift+F7 move container to workspace number 17
+    bindsym $mod+Shift+F8 move container to workspace number 18
+    bindsym $mod+Shift+F9 move container to workspace number 19
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 
@@ -213,10 +248,10 @@ input 1133:50504:Logitech_USB_Receiver_Mouse {
     bindsym $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+d floating toggle
+    bindsym $mod+d floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+d focus mode_toggle
+    bindsym $mod+Shift+d focus mode_toggle
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
@@ -329,6 +364,8 @@ for_window [app_id = "floating"] floating enable
 for_window [app_id = "floating_update"] floating enable, resize set width 1000px height 600px
 for_window [class = "(?i)pinentry"] floating enable
 for_window [title = "Administrator privileges required"] floating enable
+for_window [app_id="(pavucontrol|psensor)"] floating enable
+for_window [title="Picture-in-picture"] floating enable
 
 # window-specific configs:
 for_window [app_id="org.gnome.Nautilus"] border none
@@ -340,12 +377,14 @@ for_window [app_id="Element"] floating enable
 for_window [class="whatsapp-desktop-linux"] floating enable
 for_window [class="Zulip"] floating enable
 for_window [app_id="blueman-manager"] floating enable
+for_window [app_id="firefox" title="Picture-in-Picture"] floating enable
 
 assign [app_id="waterfox"] workspace number 3
 assign [app_id="thunderbird"] workspace number 2
 assign [app_id="Signal"] workspace number 1
 assign [app_id="cinny"] workspace number 1 
 assign [app_id="WhatsApp"] workspace number 1 
+assign [class="Spotify"] workspace number 9
 
 ## Execute Applications:
 exec_always flatpak run com.synology.SynologyDrive
@@ -356,8 +395,12 @@ exec flameshot
 bindsym Print exec slurp | grim -g - - | wl-copy
 bindsym $mod+Shift+s exec slurp | grim -g - - | wl-copy
 
+exec lxsession
+#exec_always pkill kanshi; exec kanshi
+#exec autotiling &
 
-
+# Notifications:
+exec mako --anchor top-right
 
 
 
@@ -365,3 +408,6 @@ bindsym $mod+Shift+s exec slurp | grim -g - - | wl-copy
 
 
 include /etc/sway/config.d/*
+
+#exec_always ~/.config/waybar/launch.sh
+
