@@ -15,4 +15,5 @@ require("core.plugins.neotree")
 require("core.plugins.trouble")
 require("core.plugins.latex")
 require("core.plugins.language")
+require("core.plugins.todo")
 

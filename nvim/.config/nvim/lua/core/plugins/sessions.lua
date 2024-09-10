@@ -10,3 +10,4 @@ require("auto-session").setup {
 
 	vim.keymap.set('n', '<leader>ls', require("auto-session.session-lens").search_session, {noremap = true})
 }
+vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

@@ -51,6 +51,10 @@ return require('packer').startup(function(use)
 		}
 	}
 	use 'preservim/tagbar'
+	use {"folke/todo-comments.nvim",
+  		requires = { "nvim-lua/plenary.nvim" },
+		config = function() require('todo-comments').setup() end,
+  	}
 
 -- LSPs
 	use {
@@ -75,7 +79,7 @@ return require('packer').startup(function(use)
 	use 'folke/trouble.nvim'
 
 -- Git
-	use 'lewis6991/gitsigns.nvim'
+	--use 'lewis6991/gitsigns.nvim'
 	use 'tpope/vim-fugitive'
 
 -- Rust
