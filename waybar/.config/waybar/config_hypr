@@ -5,14 +5,14 @@
     // "width": 1280, // Waybar width
     "spacing": 0, // Gaps between modules (4px)
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad", "custom/media", "sway/window"],
+    "modules-left": ["hyprland/workspaces", "hyprland/mode", "hyprland/scratchpad", "custom/media", "hyprland/window"],
     "modules-center": ["clock"],
-    "modules-right": ["tray", "mpd", "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "keyboard-state", "hyprland/language", "battery", "battery#bat2", "power-profiles-daemon", "custom/powermenu"],
+    "modules-right": ["tray", "mpd", "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "keyboard-state",  "battery", "battery#bat2", "power-profiles-daemon", "custom/powermenu"],
     // Modules configuration
-    "sway/mode": {
+    "hyprland/mode": {
         "format": " {}"
     },
-    "sway/workspaces": {
+    "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": false,
         "warp-on-scroll": false,
@@ -47,7 +47,7 @@
         "icon-size": 20,
         "spacing": 8
     },
-    "sway/window": {
+    "hyprland/window": {
         "max-length": 60,
         "tooltip": false
         // "format": "( {} )"
@@ -61,12 +61,11 @@
             "unlocked": ""
         }
     },
-    //"hyprland/mode": {
-    "sway/mode": {
+    "hyprland/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
     //"hyprland/scratchpad": {
-    "sway/scratchpad": {
+    "hyprland/scratchpad": {
         "format": "{icon} {count}",
         "show-empty": false,
         "format-icons": ["", ""],
