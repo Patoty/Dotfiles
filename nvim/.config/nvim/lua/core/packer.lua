@@ -32,6 +32,14 @@ return require('packer').startup(function(use)
 	--themes
 		use 'ellisonleao/gruvbox.nvim'
 		use 'folke/tokyonight.nvim'
+		use 'xero/miasma.nvim'
+		use 'neanias/everforest-nvim'
+		--use {'neanias/everforest-nvim',
+		--	config = function()
+		--		require("everforest").setup()
+		--	end,
+
+		--}
 
 -- navigation plugins
 	use 'nvim-tree/nvim-tree.lua' --TODO: change to luatree?
@@ -86,7 +94,9 @@ return require('packer').startup(function(use)
 	use 'simrat39/rust-tools.nvim'
 
 -- Session management
-	use 'rmagatti/auto-session'
+	use  {'rmagatti/auto-session',
+		disable = true,
+	}
 
 -- LaTeX
 	use 'lervag/vimtex'

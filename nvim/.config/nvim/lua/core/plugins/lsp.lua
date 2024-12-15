@@ -12,7 +12,7 @@ local on_attach = function(_,_)
 	vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, {})
 	vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, {})
 	vim.keymap.set('n', '<leader>gr', require('telescope.builtin').lsp_references, {})
-	vim.keymap.set('n', '<leader>K', vim.lsp.buf.hover, {})
+	vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, {})
 
 	vim.keymap.set('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap=true, silent=true })
 
@@ -41,17 +41,35 @@ require("lspconfig").texlab.setup {
 	capabilities = capabilities,
 	cmd = {"texlab"},
 	filetypes = {"tex", "bib"},
+	--root_dir = function (filename)
+	--	return util.path.dirname(filename)
+	--end,
 	settings =  {
 		texlab = {
 			rootDirectory = nil,
-			build = _G.TexMagicBuildConfig,
+			build = {
+				args = {"-pdf", "-interaction=nonstopmode", "-synctex=1", "%f"},
+				executable = "latexmk",
+				forwardSearchAfter = false,
+				onSave = true 
+			},
+			chktex = {
+				onEdit = false,
+				onOpenAndSave = false
+			},
+
+			diagnosticsDelay = 300,
 
 			forwardSearch = {
-				executable = "evince",
-				args = {"%p"},
+				executable = "zathura",
+				args = {"--synctex-forward", "%l:1:%f", "%p"},
 			},
+			latexindent = {
+				modifyLineBreaks = false
+			}
 		},
 	},
+
 }
 
 require("lspconfig").cmake.setup {
@@ -62,3 +80,10 @@ require("lspconfig").bashls.setup {
 	on_attach = on_attach
 }
 
+require("lspconfig").jedi_language_server.setup {
+	on_attach = on_attach
+}
+
+require("lspconfig").ts_ls.setup{
+	on_attach = on_attach
+}

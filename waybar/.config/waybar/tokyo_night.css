@@ -14,9 +14,8 @@ window#waybar {
     box-shadow: none;
     text-shadow: none;
     transition-duration: 0s;
-    /*color: rgba(217, 216, 216, 1);*/
-	color: #c2c2b0;
-    background: #222222; 
+    color: rgba(217, 216, 216, 1);
+    background: #1a1b26; 
 }
 
 window#waybar.hidden {
@@ -61,7 +60,7 @@ button:hover {
 
 #workspaces button {
     padding: 0 5px;
-    color: #c9a554;
+    color: #565f89;
     border: 3px solid rgba(9, 85, 225, 0);
     border-radius: 10px;
     min-width: 25px;
@@ -69,17 +68,17 @@ button:hover {
 
 #workspaces button:hover {
     box-shadow: inherit;
-    border-color: #b36d43;
-    color: #b36d43;
+    border-color: #bb9af7;
+    color: #bb9af7;
 }
 
 #workspaces button.visible {
-    color: #c9a554;
+    color: #a9b1d6;
 }
 
 #workspaces button.focused {
-    border-top: 3px solid #c9a554;
-    border-bottom: 3px solid #c9a554;
+    border-top: 3px solid #7aa2f7;
+    border-bottom: 3px solid #7aa2f7;
 }
 
 #workspaces button.urgent {
@@ -88,10 +87,10 @@ button:hover {
 }
 
 #workspaces button.focused {
-    color: #78824b;
+    color: #7aa2f7;
 }
 #workspaces button.focused:hover {
-    color: #b36d43;
+    color: #bb9af7;
 }
 
 #mode {

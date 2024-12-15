@@ -26,7 +26,7 @@ set recolor-keephue true
 #set recolor-lightcolor "#282C34"                    
 #set recolor-darkcolor "#F2F2F2"
 
-set default-bg "#222222" #222230
+set default-bg "#191a25" #222230
 
 #-------
 # zathurarc-dark
@@ -58,15 +58,8 @@ set notification-bg "#90A959" #0B
 set notification-fg "#151515" #00
 
 set recolor "true"
-set recolor-lightcolor "#222222"
-set recolor-darkcolor "#c2c2b0" #"#bcbcbc"
+set recolor-lightcolor "#191a25"
+set recolor-darkcolor "#abb2bf" #"#bcbcbc"
 #set recolor-darkcolor "#F2F2F2"
 set recolor-reverse-video "true"
 set recolor-keephue "true"
-
-set lightcolor "#fbf1c7"
-set darkcolor "#736e5d"
-
-map <F1> focus_inputbar ":set recolor-lightcolor \#fbf1c7"    
-map <F2> focus_inputbar ":set recolor-darkcolor \#3c3836"    
-map ! feedkeys "<F1><Return><F2><Return>"

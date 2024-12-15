@@ -12,20 +12,26 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term alacritty 
+set $term kitty 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
-#set $menu "rofi -combi-modi window,drun,ssh,run -show combi -show-icons"
+set $menu "rofi -combi-modi window,drun,ssh,run -show combi -show-icons"
 #set $menu "rofi -show drun"
-set $menu "wofi --show drun"
+#set $menu "wofi --show drun"
+
+#set $lockscreen ~/Pictures/Wallpapers/GBS/space-sloth-1.jpg
+set $lockscreen ~/Pictures/Wallpapers/paper/wp9465072-dark-academia-poetry-wallpapers.jpg
+set $background ~/Pictures/Wallpapers/paper/sea__-sail-drawing-art-wallpaper.jpg
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 #output * bg ~/Pictures/Wallpapers/landscape-car3.jpg fill
-output * bg ~/Pictures/Wallpapers/GBS/space-sloth-1.jpg fill
+#output * bg ~/Pictures/Wallpapers/GBS/space-sloth-1.jpg fill
+#output * bg ~/Pictures/Wallpapers/wp5323510-moonlight-sailing-wallpapers.jpg fill
+output * bg $background fill
 #
 # Example configuration:
 #
@@ -34,25 +40,48 @@ output * bg ~/Pictures/Wallpapers/GBS/space-sloth-1.jpg fill
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 output 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' resolution 2560x1440@60Hz position 1080,170 scale 1.25
 output 'AOC 2460G5 0x0000FA96' resolution 1920x1080 position 0,0 transform 270
-output eDP-1 scale 1.25
+output eDP-1 scale 1.25 resolution 1920x1080 position 1080,1322 
 
-output 'Dell Inc. DELL U2713H C6F0K534090L' resolution 2560x1440@60Hz position 1920,0 scale 1.25
-output 'Iiyama North America PLB2712HDS 1105104300939' resolution 1920x1080 position 0,100 
-exec kanshi
+output 'Dell Inc. DELL U2713H C6F0K534090L' resolution 2560x1440@60Hz position 0,203 scale 1.25
+output 'Dell Inc. DELL U2412M 0FFXD4193H6L' resolution 1920x1080 position 2048,0 transform 270
+#output 'Iiyama North America PLB2712HDS 1105104300939' resolution 1920x1080 position 0,100 
+#exec kanshi
 
 set $laptopdisp eDP-1 
 bindswitch --reload --locked lid:on output $laptopdisp disable
 bindswitch --reload --locked lid:off output $laptopdisp enable
 # laptop lid script:
 exec_always ~/bin/clamshell_mode.sh
+
+# Swap mouse buttons for xwayland 
+exec_always ~/bin/xpointers.sh
+
+
+workspace 1 output 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' eDP-1 
+workspace 2 output 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' eDP-1
+workspace 3 output 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' eDP-1
+workspace 4 output 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' eDP-1
+workspace 5 output 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' eDP-1
+workspace 6 output 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' eDP-1
+workspace 7 output 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' eDP-1
+workspace 8 output 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' eDP-1
+workspace 9 output 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' eDP-1
 workspace 10 output eDP-1
-workspace 11 output 'AOC 2460G5 0x0000FA96'
+workspace 11 output 'AOC 2460G5 0x0000FA96' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
+workspace 12 output 'AOC 2460G5 0x0000FA96' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
+workspace 13 output 'AOC 2460G5 0x0000FA96' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
+workspace 14 output 'AOC 2460G5 0x0000FA96' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
+workspace 15 output 'AOC 2460G5 0x0000FA96' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
+workspace 16 output 'AOC 2460G5 0x0000FA96' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
+workspace 17 output 'AOC 2460G5 0x0000FA96' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
+workspace 18 output 'AOC 2460G5 0x0000FA96' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
+workspace 19 output 'AOC 2460G5 0x0000FA96' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
 
 ## Brightness configuration
-#bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
-#bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
-bindsym --locked XF86MonBrightnessDown exec light -U 5
-bindsym --locked XF86MonBrightnessUp exec light -A 5 
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+#bindsym --locked XF86MonBrightnessDown exec light -U 5
+#bindsym --locked XF86MonBrightnessUp exec light -A 5 
 
 ## Audio configuration
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -66,11 +95,12 @@ bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 # Example configuration:
 #
 exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000 -i ~/Pictures/Wallpapers/GBS/space-sloth-1.jpg' \
+         timeout 300 'swaylock -f -c 000000 -i $lockscreen' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000 -i ~/Pictures/Wallpapers/GBS/space-sloth-1.jpg'
+         before-sleep 'swaylock -f -c 000000 -i $lockscreen'
 
-bindsym $mod+Delete exec swaylock -f -c 000000 -i ~/Pictures/Wallpapers/GBS/space-sloth-1.jpg
+bindsym $mod+Delete exec swaylock -f -c 000000 -i $lockscreen 
+
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
@@ -96,6 +126,14 @@ input "2:7:SynPS/2_Synaptics_TouchPad" {
 	click_method clickfinger
 }
 
+input "1241:1031:USB-HID_Keyboard_Mouse" {
+	pointer_accel 0.05
+	accel_profile adaptive
+	natural_scroll disabled 
+	left_handed disabled
+
+}
+
 input "2:10:TPPS/2_Elan_TrackPoint" {
 	pointer_accel 0.05
 	accel_profile adaptive
@@ -104,8 +142,8 @@ input "2:10:TPPS/2_Elan_TrackPoint" {
 }
 
 input type:keyboard {
-	xkb_options caps:escape
-	xkb_layout de
+	xkb_layout de,se
+	xkb_options grp:alt_shift_toggle,caps:escape
 }
 
 input 1133:50504:Logitech_USB_Receiver_Mouse {
@@ -312,13 +350,13 @@ bindsym $mod+r mode "resize"
 #        inactive_workspace #32323200 #32323200 #5c5c5c
 #    }
 #}
-bar {
-	position top
-	swaybar_command waybar
-}
+#bar {
+#	position top
+#	swaybar_command waybar
+#}
 
 ### Visual configuration
-gaps inner 7 
+gaps inner 5 
 #gaps outer 7 
 default_border pixel 4
 
@@ -326,14 +364,20 @@ default_border pixel 4
 set $gnome-schema org.gnome.desktop.interface
 exec_always {
 	#gtk settings
-    gsettings set $gnome-schema gtk-theme 'Breeze-Dark'
-    gsettings set $gnome-schema icon-theme 'Breeze-Dark'
+    #gsettings set $gnome-schema gtk-theme 'Breeze-Dark'
+    gsettings set $gnome-schema gtk-theme 'Gruvbox-Dark'
+    gsettings set $gnome-schema icon-theme 'Gruvbox'
+    #gsettings set $gnome-schema theme 'Breeze-Dark'
     gsettings set $gnome-schema cursor-theme 'Breeze'
     gsettings set $gnome-schema font-name 'Sans 10'
 
 	# qt settings
 	export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-	export QT_QPA_PLATFORMTHEME="qt5ct"
+	export QT_QPA_PLATFORMTHEME="qt6ct"
+	export QT_QPA_PLATFORM=wayland
+
+	# other env variables
+	export EDITOR=/bin/nvim
 }
 
 # Border Colors: <border> <background> <text> <indicator> <child_border>
@@ -342,12 +386,22 @@ exec_always {
 ## text: The text color of the title bar.
 ## indicator: The color used to indicate where a new view will open. In a tiled container, this would paint the right border of the current view if a new view would be opened to the right.The color used to indicate where a new view will open. In a tiled container, this would paint the right border of the current view if a new view would be opened to the right.
 ## child_border: The border around the view itself.
-client.focused #4c7899 #285577 #ffffff #2e9ef4 #285577
+#blue
+#client.focused #4c7899 #285577 #ffffff #2e9ef4 #285577
+#client.focused_inactive #333333 #5f676a #ffffff #484e50 #5f676a
+#client.focused_tab_title #333333 #5f676a #ffffff
+#client.unfocused #333333 #222222 #888888 #292d2e #222222
+#client.urgent #2f343a #900000 #ffffff #900000 #900000
+#client.placeholder #000000 #0c0c0c #ffffff #000000 #0c0c0c
+#green
+client.focused #222222 #685742 #d7c483 #bb7744 #685742
 client.focused_inactive #333333 #5f676a #ffffff #484e50 #5f676a
 client.focused_tab_title #333333 #5f676a #ffffff
 client.unfocused #333333 #222222 #888888 #292d2e #222222
 client.urgent #2f343a #900000 #ffffff #900000 #900000
 client.placeholder #000000 #0c0c0c #ffffff #000000 #0c0c0c
+titlebar_border_thickness 1
+titlebar_padding 1
 
 set $opacity 0.9
 #for_window [class=".*"] opacity $opacity
@@ -364,30 +418,37 @@ for_window [app_id = "floating"] floating enable
 for_window [app_id = "floating_update"] floating enable, resize set width 1000px height 600px
 for_window [class = "(?i)pinentry"] floating enable
 for_window [title = "Administrator privileges required"] floating enable
+for_window [title = "New Event:"] floating enable
+for_window [title = "Edit Event:"] floating enable
 for_window [app_id="(pavucontrol|psensor)"] floating enable
 for_window [title="Picture-in-picture"] floating enable
 
 # window-specific configs:
-for_window [app_id="org.gnome.Nautilus"] border none
-for_window [app_id="org.gnome.Nautilus"] floating enable
-for_window [class="Signal"] floating enable
-for_window [app_id="cinny"] floating enable
+#for_window [app_id="org.gnome.Nautilus"] border none
+#for_window [app_id="org.gnome.Nautilus"] floating enable
+#for_window [class="Signal"] floating enable
+#for_window [app_id="cinny"] floating enable
 for_window [app_id="Bitwarden"] floating enable
 for_window [app_id="Element"] floating enable
-for_window [class="whatsapp-desktop-linux"] floating enable
-for_window [class="Zulip"] floating enable
+#for_window [app_id="whatsapp-for-linux"] floating enable
+for_window [app_id="nheko"] floating enable
+#for_window [class="Zulip"] floating enable
 for_window [app_id="blueman-manager"] floating enable
 for_window [app_id="firefox" title="Picture-in-Picture"] floating enable
 
 assign [app_id="waterfox"] workspace number 3
-assign [app_id="thunderbird"] workspace number 2
-assign [app_id="Signal"] workspace number 1
+assign [app_id="firefox"] workspace number 3
+assign [app_id="Thunderbird"] workspace number 2
+assign [class="Signal"] workspace number 1
 assign [app_id="cinny"] workspace number 1 
-assign [app_id="WhatsApp"] workspace number 1 
+assign [app_id="whatsapp-for-linux"] workspace number 1 
+assign [app_id="nheko"] workspace number 1 
 assign [class="Spotify"] workspace number 9
+assign [class="anytype"] workspace number 6
+assign [app_id="obsidian"] workspace number 6
 
 ## Execute Applications:
-exec_always flatpak run com.synology.SynologyDrive
+exec flatpak run com.synology.SynologyDrive
 exec_always nm-applet
 exec flameshot
 
@@ -402,12 +463,15 @@ exec lxsession
 # Notifications:
 exec mako --anchor top-right
 
+# Darkman 
+exec darkman
 
-
+# app shortcuts
+bindsym $mod+Shift+f exec dolphin 
 
 
 
 include /etc/sway/config.d/*
 
-#exec_always ~/.config/waybar/launch.sh
+exec_always ~/.config/waybar/launch.sh
 

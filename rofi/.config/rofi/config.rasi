@@ -8,4 +8,8 @@ configuration {
 //@theme "/usr/share/rofi/themes/Paper.rasi"
 //@theme "/usr/share/rofi/themes/glue_pro_blue.rasi"
 
-@theme "/usr/share/rofi/themes/glue_pro_blue.rasi"
+//@theme "/usr/share/rofi/themes/glue_pro_blue.rasi"
+
+//@theme "/usr/share/rofi/themes/gruvbox-light-soft.rasi"
+
+@theme "/usr/share/rofi/themes/gruvbox-dark-soft.rasi"
