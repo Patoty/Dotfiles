@@ -1,0 +1,11 @@
+
+sort=-time 
+
+on-button-left=invoke-default-action
+on-button-right=dismiss
+background-color=#222222
+text-color=#d7c483
+border-color=#78824b
+
+icons=1
+default-timeout=40000
