@@ -1,77 +1,89 @@
-{
+// -*- mode: jsonc -*-
+[{
+    //"output": ["DP-1", "eDP-2"],
     "layer": "top", // Waybar at top layer
-    "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 25, // Waybar height (to be removed for auto height)
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 24, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
-    "spacing": 0, // Gaps between modules (4px)
+    "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad", "custom/media", "sway/window"],
-    "modules-center": ["clock"],
-    "modules-right": ["tray", "mpd", "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "keyboard-state", "sway/language", "battery", "battery#bat2", "power-profiles-daemon", "custom/powermenu"],
+    "modules-left": [
+        "sway/workspaces",
+        //"cava",
+        "sway/mode",
+        "sway/scratchpad"
+    ],
+    "modules-center": [
+        "sway/window"
+    ],
+    "modules-right": [
+        //"mpris",
+		"mpd",
+        "idle_inhibitor",
+        "tray",
+		"network",
+		"cpu",
+		"memory",
+		"temperature",
+
+        "load",
+		"pulseaudio",
+        "backlight",
+        "battery",
+        "clock",
+    ],
     // Modules configuration
-    "sway/mode": {
-        "format": " {}"
-    },
     "sway/workspaces": {
-        "disable-scroll": true,
         "all-outputs": false,
         "warp-on-scroll": false,
+        "enable-bar-scroll": true,
+        "disable-scroll-wraparound": true,
         "format": "{icon}",
         "format-icons": {
-            "1": "1 <span font='Font Awesome 5 Free 14'></span>",
-            "2": "2 <span font='Font Awesome 5 Free 14'></span>",
-            "3": "3 <span font='Font Awesome 5 Free 14'></span>",
-            "4": "4 <span font='Font Awesome 5 Free 14'></span>",
-            "5": "5 <span font='Font Awesome 5 Free 14'></span>",
-            "6": "6 <span font='Font Awesome 5 Free 14'></span>",
-            "7": "7 <span font='Font Awesome 5 Free 14'></span>",
-            "8": "8 <span font='Font Awesome 5 Free 14'></span>",
-            "9": "9 <span font='Font Awesome 5 Free 14'></span>",
-            //"9": "9 <span font='Font Awesome 5 Free 14'></span>",
-            "10": "10 <span font='Font Awesome 5 Free 14'></span>",
-            "urgent": "",
-            //"focused": "",
-            "default": "",
-			"11": "11",
-			"12": "12",
-			"13": "13",
-			"14": "14",
-			"15": "15",
-			"16": "16",
-			"17": "17",
-			"18": "18",
-			"19": "19",
+            "1": "",
+            "2": "",
+            "3": "",
+            "13": "",
+            "4": "",
+            "9": "",
+            "10": "",
         }
-    },
-    "tray": {
-        "icon-size": 20,
-        "spacing": 8
     },
     "sway/window": {
-        "max-length": 60,
-        "tooltip": false
-        // "format": "( {} )"
+        "format": "{title}",
+        "max-length": 40,
+        "all-outputs": true
     },
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{name} {icon}",
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
-        }
+    "cava": {
+	//        "cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
+	"framerate": 30,
+	"autosens": 1,
+	"bars": 14,
+	"lower_cutoff_freq": 50,
+	"higher_cutoff_freq": 10000,
+	"method": "pipewire",
+	"source": "auto",
+	"stereo": true,
+	"bar_delimiter": 0,
+	"noise_reduction": 0.77,
+	"input_delay": 2,
+        "hide_on_silence": true,
+	"format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+	"actions": {
+	    "on-click-right": "mode"
+	}
     },
-    //"hyprland/mode": {
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    //"hyprland/scratchpad": {
-    "sway/scratchpad": {
-        "format": "{icon} {count}",
-        "show-empty": false,
-        "format-icons": ["", ""],
-        "tooltip": true,
-        "tooltip-format": "{app}: {title}"
+    "mpris": {
+	"format": " {status_icon} {dynamic}",
+	"interval": 1,
+	"dynamic-len": 40,
+	"status-icons": {
+	"playing": "▶",
+	"paused": "⏸",
+	"stopped": ""
+	},
+	"dynamic-order": ["title", "artist"],
+	"ignored-players": ["firefox"]
     },
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
@@ -99,6 +111,7 @@
         "tooltip-format": "MPD (connected)",
         "tooltip-format-disconnected": "MPD (disconnected)"
     },
+
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
@@ -106,21 +119,45 @@
             "deactivated": ""
         }
     },
+    "sway/mode": {
+        "format": "{}"
+    },
+    "sway/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": ["", ""],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
     "tray": {
-        // "icon-size": 21,
+        "icon-size": 14,
         "spacing": 10
+    },
+    "load": {
+        "format": " {}"
     },
     "clock": {
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%d-%m-%Y}"
+        "format-alt": "{:%d-%m-%Y %H:%M}"
     },
     "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false
+        //"format": "{usage}%  ",
+        //"tooltip": true
+		"format": "  <span letter_spacing='-4000' stretch='ultracondensed' >{icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}{icon8}{icon9}{icon10}{icon11}{icon12}{icon13}{icon14}{icon15}{icon16}{icon17}{icon18}{icon19}{icon20}{icon21}</span>",
+        "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+        "states": {
+            "99": 99,
+            "92": 92,
+            "75": 75,
+            "50": 50
+        },
+        "on-click": "pkill -USR1 cpu_usage-way",
+        "on-click-right": "pkill -USR2 cpu_usage-way",
+        "interval": 2
     },
     "memory": {
-        "format": "{}% "
+        "format": "{}%  "
     },
     "temperature": {
         // "thermal-zone": 2,
@@ -135,15 +172,15 @@
             "", // Icon: temperature-three-quarters
             ""  // Icon: temperature-full
         ]
+
     },
     "backlight": {
         // "device": "acpi_video1",
-        "format": "{percent}% {icon}",
-        "format-alt": "{icon}",
-        "format-alt-click": "click-left",
+        "format": "{icon} {percent}%",
         "format-icons": ["", "", "", "", "", "", "", "", ""],
         "on-scroll-up": "light -A 1",
         "on-scroll-down": "light -U 1",
+
     },
     "battery": {
         "states": {
@@ -151,35 +188,22 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "{capacity}% -{power}W {icon}",
+        "format": "{capacity}%-{power}W {icon}",
+        "format-full": "{icon} {capacity}%",
+        //"format-charging": " {capacity}%",
         "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
         "format-icons": ["", "", "", "", ""]
     },
-    "battery#bat2": {
-        "bat": "BAT2"
-    },
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        //"format-wifi": "{essid} ({signalStrength}%) ",
-        "format-wifi": "({signalStrength}%/{bandwidthTotalBytes}) ",
-        "format-ethernet": "{bandwidthTotalBytes} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
-    },
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
+    "wireplumber": {
+        "scroll-step": 5, // %, can be a float
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}% ",
+        "format-bluetooth-muted": " {icon}",
+        "format-muted": "",
         "format-icons": {
             "headphone": "",
             "hands-free": "",
@@ -189,39 +213,91 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pavucontrol"
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     },
-    "custom/media": {
-        "format": "{icon} {}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    },
-    "custom/powermenu": {
-        "return-type": "json",
-        "exec": "$HOME/.config/waybar/modules/powermenu.sh",
-        "format": "<span font='Font Awesome 5 Free 9'>{icon}</span>  {}",
-        "format-icons": [""],
-        "interval": 3600,
-        "escape": true,
-        "on-click": "$HOME/.config/wofi/wofi-power.sh"
-    },
-	"power-profiles-daemon": {
-		"format": " {icon} ",
-  		"tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-  		"tooltip": true,
-  		"format-icons": {
-  		  "default": "",
-  		  "performance": "",
-  		  "balanced": "",
-  		  "power-saver": ""
+	"pulseaudio": {
+		// "scroll-step": 1, // %, can be a float
+		"format": "{volume}% {icon} {format_source}",
+		"format-bluetooth": "{volume}% {icon} {format_source}",
+		"format-bluetooth-muted": " {icon} {format_source}",
+		"format-muted": " {format_source}",
+		"format-source": "{volume}% ",
+		"format-source-muted": "",
+		"format-icons": {
+		"headphone": "",
+		"hands-free": "",
+		"headset": "",
+		"phone": "",
+		"portable": "",
+		"car": "",
+		"default": ["", "", ""]
 		},
-		"on-click": "~/bin/power_profile.sh",
-	}
-}
+	"on-click": "pavucontrol"
+	},
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+		"family": "ipv4",
+        //"format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": "({signalStrength}%/{bandwidthTotalBytes}) ",
+        "format-ethernet": "{bandwidthTotalBytes} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    }
+
+},{
+    "output": ["HDMI-A-1"],
+    // "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 24, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": [
+        "sway/workspaces",
+        "sway/mode",
+        "sway/scratchpad"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "sway/window"
+    ],
+    "sway/workspaces": {
+        "all-outputs": true,
+        "warp-on-scroll": true,
+        "enable-bar-scroll": true,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "9": "",
+            "10": ""
+        }
+    },
+    "sway/window": {
+        "format": "{title}",
+        "max-length": 40,
+        "all-outputs": true
+    },
+    "sway/mode": {
+        "format": "{}"
+    },
+    "sway/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": ["", ""],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    }
+}]
