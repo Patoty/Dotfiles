@@ -17,9 +17,9 @@ set $term kitty
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu "rofi -combi-modi window,drun,ssh,run -show combi -show-icons"
+#set $menu "rofi -combi-modi window,drun,ssh,run -show combi -show-icons"
 #set $menu "rofi -show drun"
-#set $menu "wofi --show drun"
+set $menu "wofi -I --show=drun --matching=fuzzy"
 
 #set $lockscreen ~/Pictures/Wallpapers/GBS/space-sloth-1.jpg
 set $lockscreen ~/Pictures/Wallpapers/paper/wp9465072-dark-academia-poetry-wallpapers.jpg
@@ -38,12 +38,7 @@ output * bg $background fill
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-output 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' resolution 2560x1440@60Hz position 1080,170 scale 1.25
-output 'AOC 2460G5 0x0000FA96' resolution 1920x1080 position 0,0 transform 270
-output eDP-1 scale 1.25 resolution 1920x1080 position 1080,1322 
 
-output 'Dell Inc. DELL U2713H C6F0K534090L' resolution 2560x1440@60Hz position 0,203 scale 1.25
-output 'Dell Inc. DELL U2412M 0FFXD4193H6L' resolution 1920x1080 position 2048,0 transform 270
 #output 'Iiyama North America PLB2712HDS 1105104300939' resolution 1920x1080 position 0,100 
 #exec kanshi
 
@@ -54,28 +49,31 @@ bindswitch --reload --locked lid:off output $laptopdisp enable
 exec_always ~/bin/clamshell_mode.sh
 
 # Swap mouse buttons for xwayland 
-exec_always ~/bin/xpointers.sh
+#exec_always ~/bin/xpointer
+#xwayland enable
+#for_window [shell="xwayland"] title_format "[XWayland] %title"s.sh
 
 
-workspace 1 output 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' eDP-1 
-workspace 2 output 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' eDP-1
-workspace 3 output 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' eDP-1
-workspace 4 output 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' eDP-1
-workspace 5 output 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' eDP-1
-workspace 6 output 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' eDP-1
-workspace 7 output 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' eDP-1
-workspace 8 output 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' eDP-1
-workspace 9 output 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' eDP-1
-workspace 10 output eDP-1
-workspace 11 output 'AOC 2460G5 0x0000FA96' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
-workspace 12 output 'AOC 2460G5 0x0000FA96' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
-workspace 13 output 'AOC 2460G5 0x0000FA96' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
-workspace 14 output 'AOC 2460G5 0x0000FA96' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
-workspace 15 output 'AOC 2460G5 0x0000FA96' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
-workspace 16 output 'AOC 2460G5 0x0000FA96' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
-workspace 17 output 'AOC 2460G5 0x0000FA96' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
-workspace 18 output 'AOC 2460G5 0x0000FA96' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
-workspace 19 output 'AOC 2460G5 0x0000FA96' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
+workspace 1 output 'Fujitsu Siemens Computers GmbH P27-8 TS Pro YVAQ603629' 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' 'Acer Technologies KA240HQ T4VEE0012411' 'Fujitsu Siemens Computers GmbH P34-9 US YVEJ011104' 'Lenovo Group Limited 0x8AB1 Unknown'
+workspace 2 output 'Fujitsu Siemens Computers GmbH P27-8 TS Pro YVAQ603629' 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' 'Acer Technologies KA240HQ T4VEE0012411' 'Fujitsu Siemens Computers GmbH P34-9 US YVEJ011104' 'Lenovo Group Limited 0x8AB1 Unknown'
+workspace 3 output 'Fujitsu Siemens Computers GmbH P27-8 TS Pro YVAQ603629' 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' 'Acer Technologies KA240HQ T4VEE0012411' 'Fujitsu Siemens Computers GmbH P34-9 US YVEJ011104' 'Lenovo Group Limited 0x8AB1 Unknown'
+workspace 4 output 'Fujitsu Siemens Computers GmbH P27-8 TS Pro YVAQ603629' 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' 'Acer Technologies KA240HQ T4VEE0012411' 'Fujitsu Siemens Computers GmbH P34-9 US YVEJ011104' 'Lenovo Group Limited 0x8AB1 Unknown'
+workspace 5 output 'Fujitsu Siemens Computers GmbH P27-8 TS Pro YVAQ603629' 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' 'Acer Technologies KA240HQ T4VEE0012411' 'Fujitsu Siemens Computers GmbH P34-9 US YVEJ011104' 'Lenovo Group Limited 0x8AB1 Unknown'
+workspace 6 output 'Fujitsu Siemens Computers GmbH P27-8 TS Pro YVAQ603629' 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' 'Acer Technologies KA240HQ T4VEE0012411' 'Fujitsu Siemens Computers GmbH P34-9 US YVEJ011104' 'Lenovo Group Limited 0x8AB1 Unknown'
+workspace 7 output 'Fujitsu Siemens Computers GmbH P27-8 TS Pro YVAQ603629' 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' 'Acer Technologies KA240HQ T4VEE0012411' 'Fujitsu Siemens Computers GmbH P34-9 US YVEJ011104' 'Lenovo Group Limited 0x8AB1 Unknown'
+workspace 8 output 'Fujitsu Siemens Computers GmbH P27-8 TS Pro YVAQ603629' 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' 'Acer Technologies KA240HQ T4VEE0012411' 'Fujitsu Siemens Computers GmbH P34-9 US YVEJ011104' 'Lenovo Group Limited 0x8AB1 Unknown'
+#workspace 9 output 'Fujitsu Siemens Computers GmbH P27-8 TS Pro YVAQ603629' 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' 'Dell Inc. DELL U2713H C6F0K534090L' 'Acer Technologies KA240HQ T4VEE0012411' 'Lenovo Group Limited 0x8AB1 Unknown'
+workspace 10 output 'Samsung Electric Company SyncMaster H9XS928595' 'Lenovo Group Limited 0x8AB1 Unknown' 'Fujitsu Siemens Computers GmbH P27-8 TS Pro YVAQ605419'
+workspace 9 output 'Fujitsu Siemens Computers GmbH P27-8 TS Pro YVAQ605419' 'AOC 2460G5 0x0000FA96' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
+workspace 11 output 'Fujitsu Siemens Computers GmbH P27-8 TS Pro YVAQ605419' 'AOC 2460G5 0x0000FA96' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
+workspace 12 output 'Fujitsu Siemens Computers GmbH P27-8 TS Pro YVAQ605419' 'AOC 2460G5 0x0000FA96' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
+workspace 13 output 'Fujitsu Siemens Computers GmbH P27-8 TS Pro YVAQ605419' 'AOC 2460G5 0x0000FA96' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
+workspace 14 output 'Fujitsu Siemens Computers GmbH P27-8 TS Pro YVAQ605419' 'AOC 2460G5 0x0000FA96' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
+workspace 15 output 'Fujitsu Siemens Computers GmbH P27-8 TS Pro YVAQ605419' 'AOC 2460G5 0x0000FA96' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
+workspace 16 output 'Fujitsu Siemens Computers GmbH P27-8 TS Pro YVAQ605419' 'AOC 2460G5 0x0000FA96' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
+workspace 17 output 'Fujitsu Siemens Computers GmbH P27-8 TS Pro YVAQ605419' 'AOC 2460G5 0x0000FA96' 'Samsung Electric Company SyncMaster H9XS928595' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
+workspace 18 output 'Fujitsu Siemens Computers GmbH P27-8 TS Pro YVAQ605419' 'AOC 2460G5 0x0000FA96' 'Samsung Electric Company SyncMaster H9XS928595' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
+workspace 19 output 'Fujitsu Siemens Computers GmbH P27-8 TS Pro YVAQ605419' 'AOC 2460G5 0x0000FA96' 'Samsung Electric Company SyncMaster H9XS928595' 'Dell Inc. DELL U2412M 0FFXD4193H6L'
 
 ## Brightness configuration
 bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
@@ -109,29 +107,13 @@ bindsym $mod+Delete exec swaylock -f -c 000000 -i $lockscreen
 #
 # Example configuration:
 #
-input type:pointer {
-	#natural_scroll enabled 
-	left_handed disabled
-}
-
-input "2:7:SynPS/2_Synaptics_TouchPad" {
-    dwt enabled
-    tap enabled
-	tap_button_map lrm
-    natural_scroll enabled
-	middle_emulation enabled
-	pointer_accel 0.3
-	accel_profile adaptive
-	drag enabled
-	click_method clickfinger
-}
+include ./hardware_config
 
 input "1241:1031:USB-HID_Keyboard_Mouse" {
 	pointer_accel 0.05
 	accel_profile adaptive
 	natural_scroll disabled 
 	left_handed disabled
-
 }
 
 input "2:10:TPPS/2_Elan_TrackPoint" {
@@ -141,30 +123,7 @@ input "2:10:TPPS/2_Elan_TrackPoint" {
 	left_handed disabled
 }
 
-input type:keyboard {
-	xkb_layout de,se
-	xkb_options grp:alt_shift_toggle,caps:escape
-}
 
-input 1133:50504:Logitech_USB_Receiver_Mouse {
-	natural_scroll disabled 
-	left_handed disabled
-}
-
-input "1133:16517:Logitech_G604" {
-	natural_scroll disabled 
-	left_handed disabled
-}
-
-
-#input 1133:50504:Logitech_USB_Receiver {
-#	xkb_options caps:escape
-#	xkb_options altwin:swap_alt_win
-#	xkb_layout de
-#	xkb_variant mac
-#}
-
-#
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
@@ -241,6 +200,9 @@ input "1133:16517:Logitech_G604" {
     bindsym $mod+F7 workspace number 17
     bindsym $mod+F8 workspace number 18
     bindsym $mod+F9 workspace number 19
+    bindsym $mod+F10 workspace number 20
+    bindsym $mod+F11 workspace number 21
+    bindsym $mod+F12 workspace number 22
     # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace number 1
     bindsym $mod+Shift+2 move container to workspace number 2
@@ -261,8 +223,20 @@ input "1133:16517:Logitech_G604" {
     bindsym $mod+Shift+F7 move container to workspace number 17
     bindsym $mod+Shift+F8 move container to workspace number 18
     bindsym $mod+Shift+F9 move container to workspace number 19
+    bindsym $mod+Shift+F10 move container to workspace  number 20
+    bindsym $mod+Shift+F11 move container to workspace  number 21
+    bindsym $mod+Shift+F12 move container to workspace  number 22
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+    #bindsym $mod+Alt+Left move workspace to output left
+    #bindsym $mod+Alt+Down move workspace to output down
+    #bindsym $mod+Alt+Up move workspace to output up
+    #bindsym $mod+Alt+Right move workspace to output right
+
+    bindsym Mod5+Left move workspace to output left
+    bindsym Mod5+Down move workspace to output down
+    bindsym Mod5+Up move workspace to output up
+    bindsym Mod5+Right move workspace to output right
 
 	# Gestures
 	bindgesture swipe:right workspace prev
@@ -350,10 +324,10 @@ bindsym $mod+r mode "resize"
 #        inactive_workspace #32323200 #32323200 #5c5c5c
 #    }
 #}
-#bar {
-#	position top
-#	swaybar_command waybar
-#}
+bar {
+	position top
+	swaybar_command waybar
+}
 
 ### Visual configuration
 gaps inner 5 
@@ -393,13 +367,56 @@ exec_always {
 #client.unfocused #333333 #222222 #888888 #292d2e #222222
 #client.urgent #2f343a #900000 #ffffff #900000 #900000
 #client.placeholder #000000 #0c0c0c #ffffff #000000 #0c0c0c
+
 #green
-client.focused #222222 #685742 #d7c483 #bb7744 #685742
-client.focused_inactive #333333 #5f676a #ffffff #484e50 #5f676a
-client.focused_tab_title #333333 #5f676a #ffffff
+#client.focused #222222 #685742 #d7c483 #bb7744 #685742
+#client.focused_inactive #333333 #5f676a #ffffff #484e50 #5f676a
+#client.focused_tab_title #333333 #5f676a #ffffff
+#client.unfocused #333333 #222222 #888888 #292d2e #222222
+#client.urgent #2f343a #900000 #ffffff #900000 #900000
+#client.placeholder #000000 #0c0c0c #ffffff #000000 #0c0c0c
+
+#gruvbox-new
+set $background #282828
+set $foreground #ebdbb2
+set $black #282828
+set $red   #cc241d
+set $green #98971a
+set $yellow #d79921
+set $blue  #458588
+set $magenta #b16286
+set $cyan  #689d6a
+set $white #a89984
+set $aqua  #689d6a
+set $orange #d65d0e
+set $magenta_b #d3869b
+set $cyan_b   #8ec07c
+set $yellow_b #fabd2f
+set $white_b  #ebdbb2
+set $black_b  #928374
+set $red_b    #fb4934
+set $green_b  #b8bb26
+set $blue_b   #83a598
+set $aqua_b   #8ec07c
+set $orange_b #fe8010
+
+# Border Colors: <border> <background> <text> <indicator> <child_border>
+client.focused $blue $blue $black $blue_b
+client.focused_inactive $background $background $white $blue_b
+client.focused_tab_title $blue $blue $black $blue_b
+client.unfocused $background $background $white $blue_b
 client.unfocused #333333 #222222 #888888 #292d2e #222222
 client.urgent #2f343a #900000 #ffffff #900000 #900000
 client.placeholder #000000 #0c0c0c #ffffff #000000 #0c0c0c
+
+#gruvbox
+#client.focused          #ebdbb2 #ebdbb2 #1d2021 #fe8019	
+#client.unfocused        #282828 #282828	#83a598 #1d2021		
+#client.focused_inactive #282828 #282828 #282828 
+#client.placeholder      #fabd2f	#fabd2f	#1d2021
+#client.urgent           #d3869b	#d3869b	#1d2021	
+#client.background       #282828
+
 titlebar_border_thickness 1
 titlebar_padding 1
 
@@ -425,7 +442,7 @@ for_window [title="Picture-in-picture"] floating enable
 
 # window-specific configs:
 #for_window [app_id="org.gnome.Nautilus"] border none
-#for_window [app_id="org.gnome.Nautilus"] floating enable
+for_window [app_id="org.gnome.Nautilus"] floating enable
 #for_window [class="Signal"] floating enable
 #for_window [app_id="cinny"] floating enable
 for_window [app_id="Bitwarden"] floating enable
@@ -461,17 +478,18 @@ exec lxsession
 #exec autotiling &
 
 # Notifications:
-exec mako --anchor top-right
+#exec_always mako --anchor top-right
 
 # Darkman 
 exec darkman
 
 # app shortcuts
 bindsym $mod+Shift+f exec dolphin 
+bindsym $mod+Shift+n exec nautilus 
 
 
 
 include /etc/sway/config.d/*
 
-exec_always ~/.config/waybar/launch.sh
+#exec_always ~/.config/waybar/launch.sh
 

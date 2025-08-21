@@ -1,0 +1,68 @@
+#output eDP-1 resolution 3072x1920@60Hz scale 2
+
+input type:keyboard {
+	xkb_layout de(neo_qwertz),de,se
+	#xkb_variant neo_qwertz
+	##xkb_options grp:alt_shift_toggle,caps:escape
+}
+
+input 2:10:TPPS/2_Elan_TrackPoint {
+	
+}
+
+input 1739:52839:SYNA8022:00_06CB:CE67_Touchpad {
+	dwt enabled
+	tap enabled
+	natural_scroll enabled
+	middle_emulation enabled
+	#tap_button_map lrm
+    #natural_scroll enabled
+	#middle_emulation enabled
+	#pointer_accel 0.3
+	#accel_profile adaptive
+	drag enabled
+	click_method clickfinger
+}
+
+
+input 1133:50504:Logitech_USB_Receiver_Mouse {
+	natural_scroll disabled 
+	left_handed disabled
+}
+
+input "1133:16517:Logitech_G604" {
+	natural_scroll enabled
+	left_handed disabled
+}
+
+input type:pointer {
+	#natural_scroll enabled 
+	left_handed disabled
+}
+
+
+#output 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' resolution 2560x1440@60Hz position 1080,170 scale 1.25 
+#output 'AOC 2460G5 0x0000FA96' resolution 1920x1080 position 0,0 transform 270
+output 'HKC OVERSEAS LIMITED 27E1QA 0000000000001' resolution 2560x1440@60Hz position 0,0 scale 1 
+#output 'AOC 2460G5 0x0000FA96' resolution 1920x1080 position 840,0 transform 270
+
+#output eDP-1 scale 2 resolution 3072x1920 position 274,1355
+output eDP-1 scale 1.5 resolution 3072x1920 position 234,1440
+
+#output 'Dell Inc. DELL U2713H C6F0K534090L' resolution 2560x1440@60Hz position 0,203 scale 1.25
+#output 'Dell Inc. DELL U2412M 0FFXD4193H6L' resolution 1920x1080 position 2048,0 transform 270
+
+#output 'Dell Inc. DELL U2713H C6F0K534090L' resolution 2560x1440@60Hz position 1920,287 scale 1.25
+#output 'Dell Inc. DELL U2412M 0FFXD4193H6L' resolution 1920x1080 position 3968,0 transform 270
+#output 'Samsung Electric Company SyncMaster H9XS928595' resolution 1920x1080 position 0,429
+
+# Left/Center
+output 'Fujitsu Siemens Computers GmbH P27-8 TS Pro YVAQ603629' resolution 2560x1440@60Hz position 0,0
+# Right 
+output 'Fujitsu Siemens Computers GmbH P27-8 TS Pro YVAQ605419' resolution 2560x1440@60Hz position 2560,0
+
+output 'Fujitsu Siemens Computers GmbH P34-9 US YVEJ011104' resolution 3440x1440 position 1848,0 scale 1.0
+
+
+output 'AOC 2460G5 GKAH9HA064150' resolution 1920x1080 position 1920,0 scale 1
+output 'Acer Technologies KA240HQ T4VEE0012411' resolution 1920x1080 position 0,0 scale 1
