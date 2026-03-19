@@ -1,0 +1,7 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Patrick Bokelmann
+	email = patrick.bokelmann@tum.de
+# Please adapt and uncomment the following lines:
+#	name = Patrick Bokelmann
+#	email = patrick.bokelmann@tum.de
