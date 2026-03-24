@@ -1,0 +1,988 @@
+* Basic Configuration
+
+** Server Mode
+#+begin_src emacs-lisp :tangle yes
+(server-start)
+#+end_src
+
+** Package Manager
+#+begin_src emacs-lisp :tangle yes
+  (require 'package)
+  (add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/") t)
+  
+#+end_src
+
+** Macos Keybinds
+https://www.emacswiki.org/emacs/MetaKeyProblems
+#+begin_src emacs-lisp :tangle no
+(setq mac-option-key-is-meta nil)
+(setq mac-command-key-is-meta t)
+(setq mac-command-modifier 'meta)
+(setq mac-option-modifier nil)
+#+end_src
+
+#+begin_src emacs-lisp :tangle yes
+(when (equal system-type 'darwin)
+  (setq mac-command-modifier 'meta)
+  (setq mac-option-modifier nil)
+  (setq mac-option-key-is-meta nil)
+  (setq mac-command-key-is-meta t)
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+  (add-to-list 'default-frame-alist '(ns-appearance . dark))
+  (when (member "Fira Code" (font-family-list))
+    (add-to-list 'initial-frame-alist '(font . "Fira Code-16"))
+    (add-to-list 'default-frame-alist '(font . "Fira Code-16")))
+  (set-fontset-font t 'symbol (font-spec :family "Apple Symbols") nil 'prepend)
+  (set-fontset-font t 'symbol (font-spec :family "Apple Color Emoji") nil 'prepend)
+(setq auto-dark-allow-osascript t
+      auto-dark-detection-method 'osascript)
+  )
+#+end_src
+
+** evil mode
+#+begin_src emacs-lisp :tangle yes
+(use-package evil
+   :ensure t
+   :init
+(setq evil-want-integration t)
+(setq evil-want-keybinding nil)
+(setq evil-want-C-u-scroll t)
+(setq evil-want-C-i-jump nil)
+(setq evil-undo-system 'undo-redo)
+:config
+(evil-global-set-key 'motion "j" 'evil-next-visual-line)
+(evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+(evil-set-initial-state 'messages-buffer-mode 'normal)
+(evil-set-initial-state 'dashboard-mode 'normal)
+   (evil-mode 1))
+
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (evil-collection-init))
+#+end_src
+** Vertico
+#+begin_src emacs-lisp :tangle yes
+(use-package vertico
+  :ensure t
+  :init (vertico-mode))
+
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (styles basic partial-completion)))))
+
+(use-package marginalia
+  :ensure t
+  :config (marginalia-mode))
+#+end_src
+** Helpful/which-key
+#+begin_src emacs-lisp :tangle yes
+(use-package helpful
+  :ensure t
+  :config
+  (global-set-key (kbd "C-h f") #'helpful-callable)
+  (global-set-key (kbd "C-h v") #'helpful-variable)
+  (global-set-key (kbd "C-h x") #'helpful-command)
+  (global-set-key (kbd "C-h k") #'helpful-key))
+
+(use-package which-key
+  :ensure t
+  :config (which-key-mode))
+#+end_src
+** Global settings
+#+begin_src emacs-lisp :tangle yes
+(global-auto-revert-mode 1)
+#+end_src
+** RFC Reader
+#+begin_src emacs-lisp :tangle yes
+(use-package rfc-mode
+  :ensure t
+  :config (setq rfc-mode-directory (expand-file-name "~/Nextcloud/Notes/RFCs/")))
+#+end_src
+** Cooperative remote editing
+https://elpa.gnu.org/devel/crdt.html
+#+begin_src emacs-lisp :tangle yes
+(use-package crdt
+  :ensure t)
+#+end_src
+* Theming / Visuals
+#+begin_src emacs-lisp :tangle yes
+  ;;(menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  
+  (setq-default word-wrap t)
+    
+  (setq use-short-answers t)
+  (setq inhibit-startup-message t)
+  (setq inhibit-startup-screen t)
+
+  (setq ring-bell-function 'ignore)
+  (setq window-combination-resize t)
+#+end_src
+
+** Gruvbox Theme
+#+begin_src emacs-lisp :tangle no
+    (use-package gruvbox-theme
+      :ensure t)
+(load-theme 'gruvbox t)
+#+end_src
+
+** Everforest theme
+#+begin_src emacs-lisp :tangle yes
+(add-to-list 'custom-theme-load-path "~/.emacs.d/everforest-theme")
+;(load-theme 'everforest-hard-dark t)
+(setq custom-safe-themes t)
+#+end_src
+
+** Catputccin Theme
+#+begin_src emacs-lisp :tangle yes
+(use-package catppuccin-theme
+  :ensure t
+  :config (setq catppuccin-flavor 'latte))
+#+end_src
+(load-theme 'catppuccin :no-confirm)
+https://www.rahuljuliato.com/posts/auto-dark-catppuccin
+** Auto theme switching
+#+begin_src emacs-lisp :tangle yes
+(use-package auto-dark
+  :ensure t
+  :config
+  ;; (add-hook 'auto-dark-dark-mode-hook
+  ;; 	    (lambda ()
+  ;; 	      (setq catppuccin-flavor 'mocha)
+  ;; 	      (catppuccin-reload)))
+  ;; (add-hook 'auto-dark-light-mode-hook
+  ;; 	    (lambda ()
+  ;; 	      (setq catppuccin-flavor 'latte)
+  ;; 	      (catppuccin-reload)))
+  :custom
+  ;(auto-dark-themes '((everforest-hard-dark) (whiteboard)))
+  ;; (auto-dark-themes '((everforest-hard-dark) (catppuccin)))
+  (auto-dark-themes '((modus-vivendi) (modus-operandi)))
+  :init (auto-dark-mode)
+  )
+#+end_src
+
+** Zen-Mode
+#+begin_src emacs-lisp :tangle yes
+(use-package darkroom
+  :ensure t
+  )
+
+(setq darkroom-text-scale-increase 2)
+#+end_src
+
+** Set Font
+#+begin_src emacs-lisp :tangle yes
+(add-to-list 'default-frame-alist
+            '(font . "Iosevka Nerd Font-16"))
+;;(set-frame-font "Iosevka Nerd Font 12" nil t)
+(add-hook 'after-make-frame-functions
+          (lambda (frame)
+            (select-frame frame)
+            (set-frame-font "Iosevka Nerd Font 16" nil t)))
+            ;;(set-frame-font "CaskaydiaCove Nerd Font Regular 12" nil t)))
+#+end_src
+
+** Nerd Icons and Font
+#+begin_src emacs-lisp :tangle yes
+(use-package nerd-icons
+  :ensure t
+  :custom
+  (nerd-icons-font-family "Iosevka Nerd Font"))
+
+(use-package nerd-icons-completion
+  :ensure t
+  :after nerd-icons
+  :after marginalia
+  :config
+  (nerd-icons-completion-mode))
+
+(use-package nerd-icons-dired
+  :ensure t
+  :hook (dired-mode . nerd-icons-dired-mode)
+  :custom (dired-listing-switches "-alh"))
+#+end_src
+
+* LSPs / Languages
+Add support for ansi escape codes in compilation
+#+begin_src emacs-lisp :tangle yes
+(use-package ansi-color
+  :ensure nil
+  :hook (compilation-filter . ansi-color-compilation-filter))
+#+end_src
+** Projects
+#+begin_src emacs-lisp :tangle yes
+(defcustom project-root-markers
+  '("Cargo.lock" "flake.nix" ".git")
+  "Files that indicate that directory is the root of a project"
+  :type '(repeat string)
+  :group 'project)
+
+(defun project-root-p (path)
+  (catch 'found
+    (dolist (marker project-root-markers)
+      (when (file-exists-p (concat path marker))
+        (throw 'found marker)))))
+
+(defun project-find-root (path)
+  "Search up the PATH for `project-root-markers'."
+  (let ((path (expand-file-name path)))
+    (catch 'found
+      (while (not (equal "/" path))
+        (if (not (project-root-p path))
+            (setq path (file-name-directory (directory-file-name path)))
+          (throw 'found (cons 'transient path)))))))
+
+(use-package project
+  :ensure t
+  :config (setq project-find-functions '(project-find-root)))
+#+end_src
+
+** Envrc/direnv
+#+begin_src emacs-lisp :tangle yes
+(use-package envrc
+  :ensure t
+  :hook (after-init . envrc-global-mode))
+#+end_src
+
+** Eglot
+#+begin_src emacs-lisp :tangle no
+(use-package eglot
+  :ensure nil
+  :hook (rust-mode . eglot-ensure)
+  :config
+  (add-to-list 'eglot-server-programs '(nix-mode . ("nil"))))
+#+end_src
+
+#+begin_src emacs-lisp :tangle yes
+(use-package eglot
+  :disabled t)
+#+end_src
+
+** Company Mode
+#+begin_src emacs-lisp :tangle no
+(use-package company
+  :ensure t
+  :custom
+  (company-idle-delay 0.5)
+  ; disable popup: (company-begin-commands nil)
+  :bind
+  (:map company-active-map
+	      ("C-n". company-select-next)
+	      ("C-p". company-select-previous)
+	      ("M-<". company-select-first)
+	      ("M->". company-select-last))
+  )
+#+end_src
+
+
+** TODO Corfu (inline completion)
+#+begin_src emacs-lisp :tangle yes
+(use-package corfu
+  :ensure t
+  :config (global-corfu-mode)
+  :custom
+  (corfu-auto t)
+  (corfu-cycle t)
+  (corfu-quit-no-match t)
+  (corfu-seperator ?\s))
+#+end_src
+#+begin_src emacs-lisp :tangle no
+(use-package corfu-terminal
+  :after corfu
+  :ensure t)
+#+end_src
+
+** TODO Cape (with corfu)
+#+begin_src emacs-lisp :tangle no
+(use-package cape
+  :ensure t)
+#+end_src
+
+** Yasnippets
+#+begin_src emacs-lisp :tangle no
+(use-package yasnippet
+  :ensure
+  :config
+  (yas-reload-all)
+  (add-hook 'prog-mode-hook 'yas-minor-mode)
+  (add-hook 'text-mode-hook 'yas-minor-mode))
+
+(use-package company
+  ;; ... see above ...
+  :bind
+  (:map company-mode-map
+	("<tab>". tab-indent-or-complete)
+	("TAB". tab-indent-or-complete)))
+
+(defun company-yasnippet-or-completion ()
+  (interactive)
+  (or (do-yas-expand)
+      (company-complete-common)))
+
+(defun check-expansion ()
+  (save-excursion
+    (if (looking-at "\\_>") t
+      (backward-char 1)
+      (if (looking-at "\\.") t
+        (backward-char 1)
+        (if (looking-at "::") t nil)))))
+
+(defun do-yas-expand ()
+  (let ((yas/fallback-behavior 'return-nil))
+    (yas/expand)))
+
+(defun tab-indent-or-complete ()
+  (interactive)
+  (if (minibufferp)
+      (minibuffer-complete)
+    (if (or (not yas/minor-mode)
+            (null (do-yas-expand)))
+        (if (check-expansion)
+            (company-complete-common)
+          (indent-for-tab-command)))))
+#+end_src
+
+** LSP-mode
+#+begin_src emacs-lisp :tangle yes
+(use-package lsp-mode
+  :ensure
+  :commands lsp
+  :custom
+  ;; what to use when checking on-save. "check" is default, I prefer clippy
+  (lsp-rust-analyzer-cargo-watch-command "clippy")
+  (lsp-eldoc-render-all t)
+  (lsp-idle-delay 0.6)
+  ;; enable / disable the hints as you prefer:
+  (lsp-inlay-hint-enable t)
+  ;; These are optional configurations. See https://emacs-lsp.github.io/lsp-mode/page/lsp-rust-analyzer/#lsp-rust-analyzer-display-chaining-hints for a full list
+  (lsp-rust-analyzer-display-lifetime-elision-hints-enable "skip_trivial")
+  (lsp-rust-analyzer-display-chaining-hints t)
+  (lsp-rust-analyzer-display-lifetime-elision-hints-use-parameter-names nil)
+  (lsp-rust-analyzer-display-closure-return-type-hints t)
+  (lsp-rust-analyzer-display-parameter-hints nil)
+  (lsp-rust-analyzer-display-reborrow-hints nil)
+  (gc-cons-threshold 100000000)
+  :config
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+
+(use-package lsp-ui
+  :ensure
+  :commands lsp-ui-mode
+  :custom
+  (lsp-ui-peek-always-show t)
+  (lsp-ui-sideline-show-hover nil)
+  (lsp-ui-doc-enable nil))
+#+end_src
+
+** Flycheck
+#+begin_src emacs-lisp :tangle yes
+(use-package flycheck :ensure)
+#+end_src
+
+
+** completion
+(Corfu popups)
+#+begin_src emacs-lisp :tangle no
+(use-package corfu
+  :ensure t
+  :config (global-corfu-mode)
+  :custom
+  (corfu-auto t)
+  (corfu-cycle t)
+  (corfu-separator ?\s)
+  (corfu-quit-no-match t))
+(setq corfu-auto t
+      corfu-quit-no-match 't)
+#+end_src
+
+** Compilation
+Add support for ansi escape codes in compilation
+#+begin_src emacs-lisp :tangle yes
+(use-package ansi-color
+  :ensure nil
+  :hook (compilation-filter . ansi-color-compilation-filter))
+#+end_src
+
+
+** Code folding
+hs-minor-mode
+
+** Imenu / alternative for lsp-ui-imenu
+#+begin_src emacs-lisp :tangle no
+(use-package imenu-list
+  :ensure t)
+#+end_src
+** TODO Rust
+
+** TODO Python
+#+begin_src emacs-lisp :tangle no
+(setq treesit-language-source-alist
+      '((python "https://github.com/tree-sitter/tree-sitter-python")))
+#+end_src
+
+#+begin_src emacs-lisp :tangle yes
+(add-to-list 'major-mode-remap-alist
+             '(python-mode . python-ts-mode))
+#+end_src
+
+** Nix
+#+begin_src emacs-lisp :tangle yes
+(use-package nix-mode
+  :ensure t
+  :hook (nix-mode . eglot-ensure))
+#+end_src
+
+** Treesitter
+#+begin_src emacs-lisp :tangle yes
+(setq treesit-language-source-alist
+      '((bash        "https://github.com/tree-sitter/tree-sitter-bash")
+        (c           "https://github.com/tree-sitter/tree-sitter-c")
+        (cpp         "https://github.com/tree-sitter/tree-sitter-cpp")
+        (css         "https://github.com/tree-sitter/tree-sitter-css")
+        (go          "https://github.com/tree-sitter/tree-sitter-go")
+        (html        "https://github.com/tree-sitter/tree-sitter-html")
+        (javascript  "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
+        (json        "https://github.com/tree-sitter/tree-sitter-json")
+        (python      "https://github.com/tree-sitter/tree-sitter-python")
+        (ruby        "https://github.com/tree-sitter/tree-sitter-ruby")
+        (rust        "https://github.com/tree-sitter/tree-sitter-rust")
+        (toml        "https://github.com/tree-sitter/tree-sitter-toml")
+        (typescript  "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript")
+        (tsx         "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx")
+        (yaml        "https://github.com/ikatyang/tree-sitter-yaml")))
+  (dolist (lang '(python json bash c cpp css html javascript typescript))
+    (treesit-install-language-grammar lang))
+#+end_src
+** LaTeX
+#+begin_src emacs-lisp :tangle yes
+(use-package tex
+  :ensure auctex
+  :config
+  (setq TeX-auto-save t)
+  (setq TeX-parse-self t)
+  (setq TeX-arg-right-insert-p t)
+  (setq TeX-electric-left-right-brace t)
+  ;;ask for master file for multiple documents
+  (setq-default TeX-master nil)
+;;  :hook (LaTeX-mode .
+;;		    (lambda ()
+;;		      (push (list 'output-pdf "Okular")
+;;		      ;;(push (list 'output-pdf "zathura")
+;;			    TeX-view-program-selection)))
+ )
+#+end_src
+| Keybind                | Function                                                   |
+|------------------------+------------------------------------------------------------|
+| C-c C-m / C-c Ret      | promt for latex macro, tab for completion                  |
+|------------------------+------------------------------------------------------------|
+| C-c C-c                | Latex compile                                              |
+| C-c C-a                | Latex autocompile (tex-command-run-all)                    |
+| C-c C-r                | Latex compile selected region                              |
+| C-c C-b                | Latex compile current buffer                               |
+| C-c C-t C-p            | toggle between dvi and pdf output                          |
+| C-c C-t C-i            | toggle interactive mode                                    |
+|------------------------+------------------------------------------------------------|
+| M-x TeX-error-overview | list of all errors and warnings                            |
+| C-c C-k                | kill: stop compilation execution                           |
+| C-c C-l                | center output buffer                                       |
+| C-c C-e                | insert environment                                         |
+| C-u C-c C-e            | change environment                                         |
+| C-c ]                  | LaTeX-close-environment                                    |
+| C-M-a                  | move point to beginning of environment                     |
+| C-M-e                  | move point to end of environment                           |
+|------------------------+------------------------------------------------------------|
+| M-Ret                  | Insert new \item in item environments (LaTeX-insert-item)  |
+|------------------------+------------------------------------------------------------|
+| C-c -                  | toggle (Latex-math-mode)                                   |
+|------------------------+------------------------------------------------------------|
+| C-c ;  / C-c %. C-c ;  | Comment out region    (TeX-comment-or-uncomment-region)    |
+| C-c %                  | Comment out paragraph (TeX-comment-or-uncomment-paragraph) |
+** Rust
+https://robert.kra.hn/posts/rust-emacs-setup/#prerequisites
+#+begin_src emacs-lisp :tangle yes
+(use-package rustic
+  :ensure t
+  :bind (:map rustic-mode-map
+	      ("M-j" . lsp-ui-imenu)
+	      ("M-?" . lsp-find-references)
+	      ("C-c C-c l" . flycheck-list-errors)
+	      ("C-c C-c a" . lsp-execute-code-action)
+	      ("C-c C-c r" . lsp-rename)
+	      ("C-c C-c q" . lsp-workspace-restart)
+	      ("C-c C-c Q" . lsp-workspace-shutdown)
+	      ("C-c C-c s" . lsp-rust-analyzer-status))
+  :config
+  ;; less flashiness
+  ;(setq lsp-eldoc-hook nil)
+  (setq lsp-enable-symbol-highlighting nil)
+  (setq lsp-signature-auto-activate nil)
+
+  ;; rustfmt on save
+  ;(setq rustic-format-on-save t)
+  (add-hook 'rustic-mode-hook 'rk/rustic-mode-hook))
+
+(defun rk/rustic-mode-hook ()
+  ;; so that run C-c C-c C-r works without having to confirm, but don't try to
+  ;; save rust buffers that are not file visiting. Once
+  ;; https://github.com/brotzeit/rustic/issues/253 has been resolved this should
+  ;; no longer be necessary.
+  (when buffer-file-name
+    (setq-local buffer-save-without-query t))
+  (add-hook 'before-save-hook 'lsp-format-buffer nil t))
+#+end_src
+Shortcuts:
+| Shortcut    | Action                                                                                                    |
+| C-c C-c C-r | cargo run                                                                                                 |
+| C-c C-c C-c | Run test at point                                                                                         |
+| C-c C-p     | opens a popup buffer that will give you similar access to the commands shown above but will stick around. |
+* TODO Remote Access
+* TODO Gadgets
+** Fixme-Mode
+https://www.emacswiki.org/emacs/FixmeeMode
+https://github.com/rolandwalker/fixmee
+#+begin_src emacs-lisp :tangle no
+(use-package fixmee
+  :ensure t
+  )
+#+end_src
+** Highlight Text sentence lengths
+
+https://github.com/fpiper/hl-sentence-length/tree/master
+#+begin_src emacs-lisp :tangle ./packages/hl-sentence-length.el
+;;; hl-sentence-length.el --- Highlights sentences by word count
+
+;; Copyright (C) 2022 Ferdinand Pieper
+
+;; Author: Ferdinand Pieper <mail@pie.tf>
+;; URL: https://github.com/fpiper/hl-sentence-length
+
+;; This file is not part of GNU Emacs.
+
+;; This file is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation; either version 2, or (at your option)
+;; any later version.
+;;
+;; This file is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+;;
+;; You should have received a copy of the GNU General Public License
+;; along with GNU Emacs; see the file COPYING. If not, see
+;; <https://www.gnu.org/licenses/>.
+
+;;; Commentary:
+;;
+;; Minor mode to highlight sentences based on the number of words.
+;; This is intended to help writers focus on varying their sentence
+;; lengths. By default it cycles trough eight different colors. To
+;; increase this set `hl-sentence-length-cycle' and define new
+;; additional faces. To change the clustering of word lengths
+;; customize `hl-sentence-length-roughness'.
+;;
+;;; Code:
+
+(defface hl-sentence-length-face-1
+  '((t (:background "#7d9fb2")))
+  "Face for sentences of length 1.")
+(defface hl-sentence-length-face-2
+  '((t (:background "#d5b195")))
+  "Face for sentences of length 2.")
+(defface hl-sentence-length-face-3
+  '((t (:background "#6f9e91")))
+  "Face for sentences of length 3.")
+(defface hl-sentence-length-face-4
+  '((t (:background "#cc8fb1")))
+  "Face for sentences of length 4.")
+(defface hl-sentence-length-face-5
+  '((t (:background "#a3d0e9")))
+  "Face for sentences of length 5.")
+(defface hl-sentence-length-face-6
+  '((t (:background "#e6d1a1")))
+  "Face for sentences of length 6.")
+(defface hl-sentence-length-face-7
+  '((t (:background "#f0eba8")))
+  "Face for sentences of length 7.")
+(defface hl-sentence-length-face-8
+  '((t (:background "#707070")))
+  "Face for sentences of length 8.")
+
+(defvar hl-sentence-length-cycle 8
+  "Number of faces to cycle trough.")
+
+(defvar hl-sentence-length-roughness 3
+  "Size of groups to cluster sentence lengths into.")
+
+(defun hl-sentence-length-sentence-beginning ()
+  "Return point at beginning of the current sentence."
+  (save-excursion
+    (backward-sentence)
+    (point)))
+
+(defun hl-sentence-length-sentence-end ()
+  "Return point at end of the current sentence."
+  (save-excursion
+    (backward-sentence)
+    (forward-sentence)
+    (point)))
+
+(defun hl-sentence-length-sentence-length ()
+  "Return length of current sentence."
+  (save-mark-and-excursion
+    (backward-sentence)
+    (set-mark (point))
+    (forward-sentence)
+    (count-words-region (region-beginning) (region-end))))
+
+(defun hl-sentence-length-sentence-face ()
+  "Return the appropriate face for the current sentence."
+  (let* ((length (hl-sentence-length-sentence-length))
+         (modulo (mod
+                  (+ 1 (/ (- length 1) hl-sentence-length-roughness))
+                  hl-sentence-length-cycle))
+         (facenumber (if (eq modulo 0)
+                         hl-sentence-length-cycle
+                       modulo)))
+    (intern (format "hl-sentence-length-face-%i" facenumber))))
+
+(defun hl-sentence-length-highlight-sentence ()
+  "Highlight the current sentence based on its length."
+  (let ((face (hl-sentence-length-sentence-face))
+        (overlay (make-overlay (hl-sentence-length-sentence-beginning) (hl-sentence-length-sentence-end))))
+    (overlay-put overlay 'origin 'hl-sentence-length)
+    (overlay-put overlay 'face face)))
+
+;;;###autoload
+(define-minor-mode hl-sentence-length-mode
+  "Highlight the word count of sentences."
+  nil nil nil
+  (if hl-sentence-length-mode
+      (add-hook 'post-command-hook 'hl-sentence-length-update nil t)
+    (progn
+      (remove-hook 'post-command-hook 'hl-sentence-length-update t)
+      (hl-sentence-length-remove-highlights))))
+
+(defun hl-sentence-length-create-highlights ()
+  (save-mark-and-excursion
+    (let ((pmax (point-max)))
+      (goto-char (point-min))
+      (while (< (point) pmax)
+        (forward-sentence)
+        (hl-sentence-length-highlight-sentence)))))
+
+(defun hl-sentence-length-remove-highlights ()
+  (remove-overlays nil nil 'origin 'hl-sentence-length))
+
+(defun hl-sentence-length-update ()
+  "Update the highlighted sentence lengths."
+  ;; FIXME There is probably a better way to do this.
+  (hl-sentence-length-remove-highlights)
+  (hl-sentence-length-create-highlights))
+
+(provide 'hl-sentence-length)
+;;; hl-sentence-length.el ends here
+#+end_src
+#+begin_src emacs-lisp :tangle yes
+(use-package hl-sentence
+  :ensure t)
+
+(setq sentence-end-double-space nil)
+;Does not work:
+;(use-package hl-sentence-length
+;  :ensure nil
+;  :load-path "packages/hl-sentence-length.el")
+#+end_src
+* Git
+#+begin_src emacs-lisp :tangle yes
+(use-package magit
+  :ensure t
+  :bind
+  ("C-x g s" . magit-status)
+  ("C-x g p" . magit-pull)
+  :custom (magit-process-finish-apply-ansi-colors t))
+#+end_src
+
+#+begin_src emacs-lisp :tangle yes
+(use-package magit-delta
+  :ensure t
+  :hook (magit-mode . magit-delta-mode))
+#+end_src
+* Org Mode
+#+begin_src emacs-lisp :tangle yes
+(use-package org
+  :ensure t
+  :hook
+  ;;(org-mode . org-indent-mode)
+  (org-mode . olivetti-mode)
+  :bind
+  ("C-c a" . org-agenda)
+  ("C-c l" . org-store-link)
+  ("C-c c" . org-capture)
+  :config
+  (add-to-list 'org-src-lang-modes '("rust" . rust-ts))
+  (add-to-list 'org-src-lang-modes '("python" . python-ts))
+  (custom-set-faces
+   '(org-headline-done
+     ((((class color) (min-colors 16) (background dark))
+       (:foreground "gray" :strike-through t)))))
+  (org-indent-mode -1)
+  (setq org-startup-with-latex-preview t)
+  (plist-put org-format-latex-options :scale 1.35)
+  (setq org-startup-folded 'content)
+  (setq org-ellipsis "…"
+	org-pretty-entities t
+	org-hide-leading-stars t)
+  (setq org-fontify-quote-and-verse-blocks t
+        org-src-fontify-natively t
+        org-src-tab-acts-natively t
+        org-edit-src-content-indentation 0)
+  (setq org-image-align 'center)
+  (setq org-default-notes-file "~/Nextcloud/Notes/inbox.org")
+  (setq org-refile-targets
+        '((org-agenda-files :maxlevel . 3)))
+  :custom
+  (org-todo-keywords '((sequence "IDEA" "TODO" "STUCK" "DOING" "|" "DONE" "NODO")
+                       ;;(sequence "ASSIGNED(a@!)" "WORKING(w!)" "ON REVIEW(r!)" "|" "MERGED(m!)" "CANCELLED(c!)")
+                       (sequence "LECTURE" "REVISE LECTURE" "|" "PLECTURE")
+                       (sequence "MEETING" "|" "PMEETING")
+                       (sequence "ASSIGNMENT" "WORKING" "STUCK" "FINALISING" "|" "DONE")
+                       (sequence "HOMEWORK" "WORKING" "STUCK" "FINALISING" "|" "DONE")
+                       (sequence "EVENT" "|" "FULFILLED")))
+  (org-startup-truncated nil)
+  (org-ellipsis "…")
+  (org-pretty-entities t)
+  (org-hide-emphasis-markers nil)
+  (org-fontify-quote-and-verse-blocks t)
+  (org-image-actual-width nil)
+  (org-indirect-buffer-display 'other-window)
+  (org-confirm-babel-evaluate nil)
+  (org-edit-src-content-indentation 0)
+  (org-auto-align-tags t)
+  (org-fontify-done-headline t))
+
+                                        ;(setq org-format-latex-options (:foreground default :background default :scale 2.0 :html-foreground
+                                        ;	     "Black" :html-background "Transparent" :html-scale 2.0
+                                        ;	     :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
+(setq indent-tabs-mode nil)
+#+end_src
+** Org-oram 
+#+begin_src emacs-lisp :tangle yes
+(use-package org-roam
+  :ensure t
+  ;:hook (org-mode . org-indent-mode)
+  :init
+  :custom (org-roam-directory (file-truename "~/Nextcloud/Roam-Notes/"))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+	 ("C-c n f" . org-roam-node-find)
+	 ("C-c n g" . org-roam-graph)
+	 ("C-c n i" . org-roam-node-insert)
+	 ("C-c n c" . org-roam-capture)
+	 ("C-c n j" . org-roam-dailies-capture-today))
+  :config
+  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+  (org-roam-db-autosync-mode))
+#+end_src
+*** Org-roam-ui
+#+begin_src emacs-lisp :tangle yes
+(use-package org-roam-ui
+  :ensure t
+  :after org-roam
+  :config
+  (setq org-roam-ui-sync-theme t
+	org-roam-ui-follow t
+	org-roam-ui-update-on-save t))
+#+end_src
+** Org Agenda
+#+begin_src emacs-lisp :tangle yes
+(setq
+ org-agenda-window-setup 'current-window
+ org-agenda-restore-windows-after-quit t
+ org-agenda-skip-deadline-prewarning-if-scheduled t
+ org-agenda-compact-blocks t
+ org-agenda-span 'week
+ org-agenda-skip-deadline-if-done t
+ org-agenda-skip-scheduled-if-done t
+ org-agenda-skip-timestamp-if-done t
+ org-agenda-format-date "%e de %B, %A"
+ org-agenda-deadline-leaders  '("Deadline:  " "Due in %d days:" "%d days overdue")
+ org-agenda-scheduled-leaders '("Agenda:  " "%d days overdue:")
+ )
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-agenda-files '("/Users/bokelman/Nextcloud/Notes/personal.org"
+                      "/Users/bokelman/Nextcloud/Notes/inbox.org"
+                      "/Users/bokelman/Nextcloud/Notes/master.org"
+                      ;;"/Users/bokelman/Nextcloud/Notes/Lectures/acn.org"
+                      ;;"/Users/bokelman/Nextcloud/Notes/Lectures/netsec.org"
+                      ;;"/Users/bokelman/Nextcloud/Notes/Lectures/automata.org"
+                      "/Users/bokelman/Nextcloud/Notes/Teaching/gbs.org"))
+ '(package-selected-packages nil))
+#+end_src 
+** Org download
+#+begin_src emacs-lisp :tangle yes
+(use-package org-download
+:ensure t)
+(add-hook 'dired-mode-hook 'org-download-enable)
+#+end_src
+** TODO org alert
+** PDF Reader
+#+begin_src emacs-lisp :tangle yes
+(use-package pdf-tools
+  :ensure t
+  :defer t
+  :mode ("\\.pdf\\'" . pdf-view-mode)
+  :magic ("%PDF" . pdf-view-mode)
+  :config
+  (setq pdf-view-midnight-colors '("#c2c2b0" . "#222222"))
+)
+#+end_src
+** Org Babel
+Code execution inside org documents
+#+begin_src emacs-lisp :tangle yes
+(when (memq window-system '(mac ns x))
+  (use-package exec-path-from-shell
+    :ensure t
+    :config
+    (exec-path-from-shell-initialize)))
+(setq org-babel-python-command "~/.emacs.d/babel-venv/bin/python")
+;(setq org-babel-python-command "/usr/local/bin/python3")
+(org-babel-do-load-languages
+'org-babel-load-languages
+'((python . t)))
+#+end_src
+** Visuals
+https://sophiebos.io/posts/beautifying-emacs-org-mode/
+*** Resize Headings
+#+begin_src emacs-lisp :tangle yes
+(dolist (face '((org-level-1 . 1.35)
+                (org-level-2 . 1.3)
+                (org-level-3 . 1.2)
+                (org-level-4 . 1.1)
+                (org-level-5 . 1.1)
+                (org-level-6 . 1.1)
+                (org-level-7 . 1.1)
+                (org-level-8 . 1.1)))
+  (set-face-attribute (car face) nil :font "Iosevka Nerd Font" :weight 'bold :height (cdr face)))
+
+;; Make the document title a bit bigger
+(set-face-attribute 'org-document-title nil :font "Iosevka Nerd Font" :weight
+'bold :height 1.8)
+;;(set-face-attribute 'org-indent nil :inherit '(org-hide fixed-pitch))
+#+end_src
+
+*** Make some parts use fixed-pitch 
+#+begin_src emacs-lisp :tangle no
+(set-face-attribute 'org-block nil            :foreground nil :inherit 'fixed-pitch :height 0.95)
+(set-face-attribute 'org-code nil             :inherit '(shadow fixed-pitch) :height 0.95)
+(set-face-attribute 'org-indent nil           :inherit '(org-hide fixed-pitch) :height 0.95)
+(set-face-attribute 'org-verbatim nil         :inherit '(shadow fixed-pitch) :height 0.95)
+(set-face-attribute 'org-special-keyword nil  :inherit '(font-lock-comment-face fixed-pitch))
+(set-face-attribute 'org-meta-line nil        :inherit '(font-lock-comment-face fixed-pitch))
+(set-face-attribute 'org-checkbox nil         :inherit 'fixed-pitch)
+
+(add-hook 'org-mode-hook 'variable-pitch-mode)
+(plist-put org-format-latex-options :scale 2)
+#+end_src
+
+*** Center text buffer
+#+begin_src emacs-lisp :tangle yes
+(use-package olivetti
+  :ensure t
+  :custom (olivetti-body-width 130))
+#+end_src
+
+*** pretty ui elements
+**** Org-modern
+#+begin_src emacs-lisp :tangle yes
+(use-package org-modern
+  :ensure t
+  :config
+  (setq
+   org-auto-align-tags t
+   org-tags-column 0
+   org-fold-catch-invisible-edits 'show-and-error
+   org-special-ctrl-a/e t
+   org-insert-heading-respect-content t
+
+
+   org-modern-star "Replace"
+   
+   ;; Don't style the following
+   org-modern-tag nil
+   org-modern-priority nil
+   ;org-modern-todo nil
+   org-modern-table nil
+
+   ;; Agenda styling
+   org-agenda-tags-column 0
+   ;org-agenda-block-separator ?─
+   org-agenda-time-grid
+   '((daily today require-timed)
+	 (800 1000 1200 1400 1600 1800 2000)
+	 " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
+   org-agenda-current-time-string
+   "⭠ now ─────────────────────────────────────────────────")
+
+  (global-org-modern-mode))
+#+end_src
+
+**** Org-superstar
+#+begin_src emacs-lisp :tangle yes
+(use-package org-superstar
+  :ensure t
+  :config
+  (setq org-superstar-leading-bullet " ")
+  (setq org-superstar-special-todo-items t) ;; Makes TODO header bullets into boxes
+  (setq org-superstar-todo-bullet-alist '(("TODO" . 9744)
+                                          ("DONE" . 9744)
+                                          ("READ" . 9744)
+                                          ("IDEA" . 9744)
+                                          ("WAITING" . 9744)
+                                          ("CANCELLED" . 9744)
+                                          ("PROJECT" . 9744)
+                                          ("POSTPONED" . 9744)))
+  )
+#+end_src
+*** deal with text emphasis markers
+#+begin_src emacs-lisp :tangle yes
+(use-package org-appear
+  :ensure t
+  :commands (org-appear-mode)
+  :hook     (org-mode . org-appear-mode)
+  :config 
+  (setq org-hide-emphasis-markers t)  ;; Must be activated for org-appear to work
+  (setq org-appear-autoemphasis   t   ;; Show bold, italics, verbatim, etc.
+        org-appear-autolinks      nil   ;; Show links
+        org-appear-autosubmarkers t)) ;; Show sub- and superscripts
+#+end_src
+*** Inline-images
+#+begin_src emacs-lisp :tangle yes
+(setq org-startup-with-inline-images t)
+#+end_src
+** QR Codes
+From: https://sachachua.com/blog/2024/01/using-embark-and-qrencode-to-show-a-qr-code-for-the-org-mode-link-at-point/
+#+begin_src emacs-lisp :tangle yes
+(defun my-org-link-qr (url)
+  "Display a QR code for URL in a buffer."
+  (let ((buf (save-window-excursion (qrencode--encode-to-buffer (my-org-stored-link-as-url url)))))
+    (display-buffer-in-side-window buf '((side . right)))))
+
+(use-package qrencode
+  :ensure t
+  :config
+  (with-eval-after-load 'embark
+    (define-key embark-org-link-map (kbd "q") #'my-org-link-qr)))
+#+end_src
