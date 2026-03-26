@@ -1,3 +1,15 @@
+## tramp gets hung up on precmd(), unset some features
+#https://emacs.stackexchange.com/questions/77525/why-does-tramp-not-work-when-ssh-to-a-normal-user
+if [[ "$TERM" == "dumb" ]]; then
+    unsetopt zle
+    unsetopt prompt_cr
+    unsetopt prompt_subst
+    unfunction precmd
+    unfunction preexec
+    PS1='$ '
+    return
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -147,3 +159,4 @@ alias -- make='make -j$(nproc)'
 
 
 eval "$(direnv hook zsh)"
+export PATH="$HOME/.local/bin:$PATH"
