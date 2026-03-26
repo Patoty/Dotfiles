@@ -181,12 +181,12 @@ https://www.rahuljuliato.com/posts/auto-dark-catppuccin
 ** Set Font
 #+begin_src emacs-lisp :tangle yes
 (add-to-list 'default-frame-alist
-            '(font . "Iosevka Nerd Font-16"))
+            '(font . "Iosevka Nerd Font-10"))
 ;;(set-frame-font "Iosevka Nerd Font 12" nil t)
 (add-hook 'after-make-frame-functions
           (lambda (frame)
             (select-frame frame)
-            (set-frame-font "Iosevka Nerd Font 16" nil t)))
+            (set-frame-font "Iosevka Nerd Font 10" nil t)))
             ;;(set-frame-font "CaskaydiaCove Nerd Font Regular 12" nil t)))
 #+end_src
 
@@ -822,13 +822,13 @@ https://github.com/fpiper/hl-sentence-length/tree/master
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files '("/Users/bokelman/Nextcloud/Notes/personal.org"
-                      "/Users/bokelman/Nextcloud/Notes/inbox.org"
-                      "/Users/bokelman/Nextcloud/Notes/master.org"
+ '(org-agenda-files '("~/Nextcloud/Notes/personal.org"
+                      "~/Nextcloud/Notes/inbox.org"
+                      "~/Nextcloud/Notes/master.org"
                       ;;"/Users/bokelman/Nextcloud/Notes/Lectures/acn.org"
                       ;;"/Users/bokelman/Nextcloud/Notes/Lectures/netsec.org"
                       ;;"/Users/bokelman/Nextcloud/Notes/Lectures/automata.org"
-                      "/Users/bokelman/Nextcloud/Notes/Teaching/gbs.org"))
+                      "~/Nextcloud/Notes/Teaching/gbs.org"))
  '(package-selected-packages nil))
 #+end_src 
 ** Org download
