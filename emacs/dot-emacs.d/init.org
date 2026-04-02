@@ -63,6 +63,11 @@ https://www.emacswiki.org/emacs/MetaKeyProblems
   :config
   (evil-collection-init))
 #+end_src
+
+** Stop being bombarded by warnings
+#+begin_src emacs-lisp :tangle yes
+(setq warning-minimum-level :error)
+#+end_src
 ** Vertico
 #+begin_src emacs-lisp :tangle yes
 (use-package vertico
@@ -181,12 +186,12 @@ https://www.rahuljuliato.com/posts/auto-dark-catppuccin
 ** Set Font
 #+begin_src emacs-lisp :tangle yes
 (add-to-list 'default-frame-alist
-            '(font . "Iosevka Nerd Font-10"))
+            '(font . "Iosevka Nerd Font-12"))
 ;;(set-frame-font "Iosevka Nerd Font 12" nil t)
 (add-hook 'after-make-frame-functions
           (lambda (frame)
             (select-frame frame)
-            (set-frame-font "Iosevka Nerd Font 10" nil t)))
+            (set-frame-font "Iosevka Nerd Font 12" nil t)))
             ;;(set-frame-font "CaskaydiaCove Nerd Font Regular 12" nil t)))
 #+end_src
 
@@ -283,6 +288,19 @@ Add support for ansi escape codes in compilation
 #+end_src
 
 
+** Eldoc
+*** Eldoc-Box
+https://github.com/casouri/eldoc-box
+https://emacs.stackexchange.com/questions/73983/how-to-make-eldoc-only-popup-on-demand
+#+begin_src emacs-lisp :tangle yes
+(use-package eldoc-box
+  :ensure t
+  :after eldoc
+  :hook (eldoc-mode . eldoc-box-hover-at-point-mode)
+  :bind
+  ("C-h D" . eldoc-box-help-at-point))
+  
+#+end_src
 ** TODO Corfu (inline completion)
 #+begin_src emacs-lisp :tangle yes
 (use-package corfu
@@ -543,6 +561,16 @@ Shortcuts:
 | C-c C-c C-r | cargo run                                                                                                 |
 | C-c C-c C-c | Run test at point                                                                                         |
 | C-c C-p     | opens a popup buffer that will give you similar access to the commands shown above but will stick around. |
+* AI Features
+** Agent Shell/ChatGPT Shell
+#+begin_src emacs-lisp :tangle no
+(use-package chatgpt-shell
+  :ensure t
+  :custom
+  ((chatgpt-shell-anthropickey
+    (lambda() (auth-source-get-pass 'secret "anthropic-key")))))
+#+end_src
+** Claude-Code
 * TODO Remote Access
 * TODO Gadgets
 ** Fixme-Mode
