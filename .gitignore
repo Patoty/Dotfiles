@@ -1,0 +1,13 @@
+
+auto-save-list/
+eln-cache/
+elpa/
+eshell/
+init.el*
+org-roam.db
+projects
+transient/
+tree-sitter/
+.lsp-session*
+.org-id-locations
+*~
