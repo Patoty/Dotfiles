@@ -40,6 +40,23 @@ https://www.emacswiki.org/emacs/MetaKeyProblems
   )
 #+end_src
 
+** Terminal Stuff
+#+begin_src emacs-lisp :tangle no
+(defun my/fix-tty-background ()
+          (message "hello"))
+
+(add-hook 'after-make-frame-functions #'my/fix-tty-background)
+#+end_src
+#+begin_src emacs-lisp :tangle no
+(defun my-make-terminal-transparent ()
+    "Make the terminal background transparent."
+      (unless (display-graphic-p)
+	    (set-face-attribute 'default t :background "unspecified-bg")))
+
+;; Run this hook after loading the theme
+(add-hook 'modus-themes-after-load-theme-hook #'my-make-terminal-transparent)
+#+end_src
+
 ** evil mode
 #+begin_src emacs-lisp :tangle yes
 (use-package evil
@@ -225,7 +242,7 @@ Add support for ansi escape codes in compilation
 ** Projects
 #+begin_src emacs-lisp :tangle yes
 (defcustom project-root-markers
-  '("Cargo.lock" "flake.nix" ".git")
+  '("Cargo.lock" "flake.nix" ".git" ".project")
   "Files that indicate that directory is the root of a project"
   :type '(repeat string)
   :group 'project)
@@ -296,10 +313,11 @@ https://emacs.stackexchange.com/questions/73983/how-to-make-eldoc-only-popup-on-
 (use-package eldoc-box
   :ensure t
   :after eldoc
-  :hook (eldoc-mode . eldoc-box-hover-at-point-mode)
+  :hook (eldoc-mode . (lambda ()
+                        (when (display-graphic-p)
+                          (eldoc-box-hover-at-point-mode 1))))
   :bind
   ("C-h D" . eldoc-box-help-at-point))
-  
 #+end_src
 ** TODO Corfu (inline completion)
 #+begin_src emacs-lisp :tangle yes
@@ -312,7 +330,8 @@ https://emacs.stackexchange.com/questions/73983/how-to-make-eldoc-only-popup-on-
   (corfu-quit-no-match t)
   (corfu-seperator ?\s))
 #+end_src
-#+begin_src emacs-lisp :tangle no
+
+#+begin_src emacs-lisp :tangle yes
 (use-package corfu-terminal
   :after corfu
   :ensure t)
@@ -561,6 +580,11 @@ Shortcuts:
 | C-c C-c C-r | cargo run                                                                                                 |
 | C-c C-c C-c | Run test at point                                                                                         |
 | C-c C-p     | opens a popup buffer that will give you similar access to the commands shown above but will stick around. |
+* Terminal
+#+begin_src emacs-lisp :tangle yes
+(use-package eat
+  :ensure t)
+#+end_src
 * AI Features
 ** Agent Shell/ChatGPT Shell
 #+begin_src emacs-lisp :tangle no
@@ -571,6 +595,23 @@ Shortcuts:
     (lambda() (auth-source-get-pass 'secret "anthropic-key")))))
 #+end_src
 ** Claude-Code
+#+begin_src emacs-lisp :tangle yes
+(use-package inheritenv
+  :vc (:url "https://github.com/purcell/inheritenv" :rev :newest))
+#+end_src
+
+#+begin_src emacs-lisp :tangle yes
+(use-package claude-code
+  :ensure t
+  :after vterm, eat
+  :config
+  (setq claude-code-terminal-backend 'eat)
+  (claude-code-mode)
+  :bind-keymap
+  ("C-c c" . claude-code-command-map)
+  :bind
+  (:repeat-map my-claude-map ("M" . claude-code-cycle-mode)))
+#+end_src
 * TODO Remote Access
 * TODO Gadgets
 ** Fixme-Mode
@@ -757,7 +798,8 @@ https://github.com/fpiper/hl-sentence-length/tree/master
   ("C-c c" . org-capture)
   :config
   (add-to-list 'org-src-lang-modes '("rust" . rust-ts))
-  (add-to-list 'org-src-lang-modes '("python" . python-ts))
+  ;;(add-to-list 'org-src-lang-modes '("python" . python-ts))
+  (add-to-list 'org-src-lang-modes '("python" . python))
   (custom-set-faces
    '(org-headline-done
      ((((class color) (min-colors 16) (background dark))
@@ -829,6 +871,32 @@ https://github.com/fpiper/hl-sentence-length/tree/master
 	org-roam-ui-follow t
 	org-roam-ui-update-on-save t))
 #+end_src
+** Org-journal
+#+begin_src emacs-lisp :tangle yes
+(use-package org-journal
+  :ensure t
+  :defer t
+  :custom
+  ;; Monthly files: one file per month
+  (org-journal-file-type 'monthly)
+  (org-journal-dir "~/Nextcloud/Journal/")
+  (org-journal-date-format "%A, %d %B %Y")
+  (org-journal-file-format "%Y-%m.org")
+  ;; Each new entry gets a top-level heading with the date
+  (org-journal-date-prefix "* ")
+  ;; Entries under that are second-level
+  (org-journal-time-prefix "** ")
+  (org-journal-time-format "%H:%M ")
+  (org-journal-enable-agenda-integration t)
+  ;; Encrypt if you want privacy (optional)
+  ;; (org-journal-encrypt-journal t)
+  :bind
+  ("C-c j j" . org-journal-new-entry)
+  ("C-c j s" . org-journal-search)
+  ("C-c j n" . org-journal-next-entry)
+  ("C-c j p" . org-journal-previous-entry)
+)
+#+end_src
 ** Org Agenda
 #+begin_src emacs-lisp :tangle yes
 (setq
@@ -885,6 +953,7 @@ Code execution inside org documents
     :ensure t
     :config
     (exec-path-from-shell-initialize)))
+
 (setq org-babel-python-command "~/.emacs.d/babel-venv/bin/python")
 ;(setq org-babel-python-command "/usr/local/bin/python3")
 (org-babel-do-load-languages
@@ -1013,4 +1082,9 @@ From: https://sachachua.com/blog/2024/01/using-embark-and-qrencode-to-show-a-qr-
   :config
   (with-eval-after-load 'embark
     (define-key embark-org-link-map (kbd "q") #'my-org-link-qr)))
+#+end_src
+* Final touch
+
+#+begin_src emacs-lisp :tangle yes
+(message "configuration loaded successfully!")
 #+end_src
