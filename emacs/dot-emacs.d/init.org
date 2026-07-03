@@ -879,7 +879,7 @@ https://github.com/fpiper/hl-sentence-length/tree/master
   :custom
   ;; Monthly files: one file per month
   (org-journal-file-type 'monthly)
-  (org-journal-dir "~/Nextcloud/Journal/")
+  (org-journal-dir "~/Nextcloud/Notes/Journal/")
   (org-journal-date-format "%A, %d %B %Y")
   (org-journal-file-format "%Y-%m.org")
   ;; Each new entry gets a top-level heading with the date
