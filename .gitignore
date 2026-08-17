@@ -11,3 +11,10 @@ tree-sitter/
 .lsp-session*
 .org-id-locations
 *~
+*.swp
+*venv
+bookmarks
+tramp
+url
+
+
