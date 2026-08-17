@@ -470,6 +470,10 @@ hs-minor-mode
              '(python-mode . python-ts-mode))
 #+end_src
 
+#+begin_src emacs-lisp :tangle yes
+(use-package pyton-mode
+  :ensure nil)
+#+end_src
 ** Nix
 #+begin_src emacs-lisp :tangle yes
 (use-package nix-mode
@@ -580,6 +584,11 @@ Shortcuts:
 | C-c C-c C-r | cargo run                                                                                                 |
 | C-c C-c C-c | Run test at point                                                                                         |
 | C-c C-p     | opens a popup buffer that will give you similar access to the commands shown above but will stick around. |
+** Yaml
+#+begin_src emacs-lisp :tangle yes
+(use-package yaml-mode
+  :ensure t)
+#+end_src
 * Terminal
 #+begin_src emacs-lisp :tangle yes
 (use-package eat
