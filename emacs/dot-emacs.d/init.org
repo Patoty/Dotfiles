@@ -202,13 +202,13 @@ https://www.rahuljuliato.com/posts/auto-dark-catppuccin
 
 ** Set Font
 #+begin_src emacs-lisp :tangle yes
-(add-to-list 'default-frame-alist
-            '(font . "Iosevka Nerd Font-12"))
-;;(set-frame-font "Iosevka Nerd Font 12" nil t)
-(add-hook 'after-make-frame-functions
-          (lambda (frame)
-            (select-frame frame)
-            (set-frame-font "Iosevka Nerd Font 12" nil t)))
+(let ((font-size (if (eq system-type 'darwin) 16 12)))
+  (add-to-list 'default-frame-alist
+               `(font . ,(format "Iosevka Nerd Font-%d" font-size)))
+  (add-hook 'after-make-frame-functions
+            (lambda (frame)
+              (select-frame frame)
+              (set-frame-font (format "Iosevka Nerd Font %d" font-size) nil t))))
             ;;(set-frame-font "CaskaydiaCove Nerd Font Regular 12" nil t)))
 #+end_src
 
@@ -478,7 +478,7 @@ hs-minor-mode
 #+begin_src emacs-lisp :tangle yes
 (use-package nix-mode
   :ensure t
-  :hook (nix-mode . eglot-ensure))
+  :hook (nix-mode . lsp))
 #+end_src
 
 ** Treesitter
